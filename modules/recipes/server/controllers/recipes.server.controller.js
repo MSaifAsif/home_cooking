@@ -47,7 +47,15 @@ exports.read = function (req, res) {
  * Update a 
  */
 exports.update = function (req, res) {
-
+  var updatedFieldsJson = req.body.updates;
+  console.log(updatedFieldsJson);
+  Recipes.findByIdAndUpdate(req.body.recipe_id, updatedFieldsJson, function (err, updatedRecipe) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(updatedRecipe);
+    }
+  });
 };
 
 /**
@@ -61,5 +69,63 @@ exports.delete = function (req, res) {
  * List of 
  */
 exports.list = function (req, res) {
+  console.log('Fetching all recipes');
+  Recipes.find().exec(function(err, recipes) {
+    if (err) {
+      return res.status(400).send({
+        message: err
+      });
+    } else {
+      res.json(recipes);
+    }
+  });
+};
 
+
+/**
+ * AND filter query
+ */
+exports.find_only = function (req, res) {
+  var query = {};
+  query.$and = [];
+  var filters = req.query;
+  query.$and.push(filters);
+
+  Recipes.find(query).exec(function(err, recipes) {
+    if (err) {
+      return res.status(400).send({
+        message: err
+      });
+    } else {
+      res.status(200).send({
+        data: recipes
+      }); 
+    }
+  });
+};
+
+
+/**
+ * OR filter query
+ */
+exports.find_any = function (req, res) {
+  var query = {};
+  query.$or = [];
+  var filters = req.query;
+  query.$or.push(filters);
+
+  // we may have multiple filters in our request
+  // in that case build the query based 
+  // on the filters
+  Recipes.find(query).exec(function(err, recipes) {
+    if (err) {
+      return res.status(400).send({
+        message: err
+      });
+    } else {
+      res.status(200).send({
+        data: recipes
+      }); 
+    }
+  });
 };

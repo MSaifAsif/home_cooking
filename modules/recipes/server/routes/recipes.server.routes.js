@@ -8,7 +8,10 @@ module.exports = function(app) {
   app.route('/recipes/add').post(recipesController.create);
 
   // filter queries
-  // app.route('/recipes/find_any').get(recipesController.find_any);
-  // app.route('/recipes/find_only').get(recipesController.find_only);
+  app.route('/recipes/find_any').get(recipesController.find_any);
+  app.route('/recipes/find_only').get(recipesController.find_only);
+
+  // update an existing recipe
+  app.route('/recipes/update').put(recipesController.update);
 
 };
