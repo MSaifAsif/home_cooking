@@ -10,5 +10,4 @@ var path = require('path'),
  * Recipes module init function.
  */
 module.exports = function (app, db) {
-
 };
