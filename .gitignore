@@ -13,6 +13,7 @@ node_modules/
 public/lib/
 app/tests/coverage/
 .bower-*/
+bower_components/
 .idea/
 coverage/
 
