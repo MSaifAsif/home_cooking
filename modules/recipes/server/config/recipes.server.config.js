@@ -4,10 +4,9 @@
  * Module dependencies
  */
 var path = require('path'),
-  config = require(path.resolve('./config/config'));
+    config = require(path.resolve('./config/config'));
 
 /**
  * Recipes module init function.
  */
-module.exports = function (app, db) {
-};
+module.exports = function (app, db) {};
