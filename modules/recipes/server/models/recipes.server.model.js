@@ -16,11 +16,7 @@ function validateTitle(argument) {
  * Recipes Schema
  */
 var RecipesSchema = new Schema({
-  // Recipes model fields   
-  id: {
-    type: Schema.Types.ObjectId,
-    default: new mongoose.Types.ObjectId()
-  }, 
+  // Recipes model fields
   title: {
     type: String,
     validate: [validateTitle, 'Title should not exceed 15 characters']
