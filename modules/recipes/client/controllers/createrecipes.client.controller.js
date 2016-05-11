@@ -27,6 +27,16 @@
             $scope.procedureInputs.push({});
         }
 
+        $scope.imageFiles = [];
+        $scope.uploadAllFiles = function(){
+            console.log($scope.imageFiles);
+        };
+
+        $scope.createRecipe = function() {
+
+        };
+
+
         $scope.keyPressEvent = function($event, el) {
             var elName = $event.target.name;
             if (RecipeServiceUtils.isKeyEnter($event.keyCode)) {

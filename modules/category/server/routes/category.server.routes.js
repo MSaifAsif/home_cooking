@@ -5,7 +5,7 @@ module.exports = function (app) {
     // ...
 
     var categoryController = require('../controllers/category.server.controller');
-    app.route('/api/category/get').get(categoryController.list);
-    app.route('/api/category/save').post(categoryController.save);
+    app.route('/api/category/').get(categoryController.list);
+    app.route('/api/category/').post(categoryController.save);
 
 };
