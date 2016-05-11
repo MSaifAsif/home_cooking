@@ -21,11 +21,11 @@
 
         function addMoreIngredientsFields() {
             $scope.ingredientsInputs.push({});
-        };
+        }
 
         function addMoreProcedureFields() {
             $scope.procedureInputs.push({});
-        };
+        }
 
         $scope.keyPressEvent = function($event, el) {
             var elName = $event.target.name;
