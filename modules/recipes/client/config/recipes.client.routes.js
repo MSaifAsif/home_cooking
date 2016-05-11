@@ -14,7 +14,7 @@
             .state('create-recipes', {
                 url: '/recipes/create',
                 templateUrl: 'modules/recipes/client/views/create-recipes.client.view.html',
-                controller: 'RecipesController',
+                controller: 'CreateRecipesController',
                 controllerAs: 'vm'
             })
             .state('recipes', {
