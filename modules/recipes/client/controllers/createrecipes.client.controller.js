@@ -19,15 +19,20 @@
         };
 
         $scope.createRecipe = function () {
-
+            data = {
+                // get form data here
+                x:1
+            }
+            RecipeService.save({}, data);
         };
 
         $scope.addMoreTextFields = function ($event, el) {
             var elName = $event.target.name;
+            console.log(elName);
             if ($event.keyCode === 13) {
                 if (elName === 'ingredients') {
                     $scope.ingredientsInputs.push({});
-                } else if (elName === 'direction') {
+                } else if (elName === 'directions') {
                     $scope.procedureInputs.push({});
                 }
             }
