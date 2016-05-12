@@ -5,45 +5,30 @@
         .module('recipes')
         .controller('CreateRecipesController', CreateRecipesController);
 
-    CreateRecipesController.$inject = ['$scope', 'RecipeServiceUtils'];
+    CreateRecipesController.$inject = ['$scope', 'RecipeService'];
 
-    function CreateRecipesController($scope, RecipeServiceUtils) {
+    function CreateRecipesController($scope, RecipeService) {
         var vm = this;
 
         $scope.ingredientsInputs = [{}];
         $scope.procedureInputs = [{}];
 
-        init();
-
-        function init() {
-            $scope.recipeCategoryTypes = RecipeServiceUtils.getCategoryTypes();
-        }
-
-        function addMoreIngredientsFields() {
-            $scope.ingredientsInputs.push({});
-        }
-
-        function addMoreProcedureFields() {
-            $scope.procedureInputs.push({});
-        }
-
         $scope.imageFiles = [];
-        $scope.uploadAllFiles = function(){
+        $scope.uploadAllFiles = function () {
             console.log($scope.imageFiles);
         };
 
-        $scope.createRecipe = function() {
+        $scope.createRecipe = function () {
 
         };
 
-
-        $scope.keyPressEvent = function($event, el) {
+        $scope.addMoreTextFields = function ($event, el) {
             var elName = $event.target.name;
-            if (RecipeServiceUtils.isKeyEnter($event.keyCode)) {
-                if (RecipeServiceUtils.isIngredientElement(elName)) {
-                    addMoreIngredientsFields();
-                } else if (RecipeServiceUtils.isProcedureElement(elName)) {
-                    addMoreProcedureFields();
+            if ($event.keyCode === 13) {
+                if (elName === 'ingredients') {
+                    $scope.ingredientsInputs.push({});
+                } else if (elName === 'direction') {
+                    $scope.procedureInputs.push({});
                 }
             }
         };

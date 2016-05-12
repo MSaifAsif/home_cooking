@@ -5,7 +5,7 @@
         .module('recipes')
         .directive('drvRecipeMultiFileUpload', drvRecipeMultiFileUpload);
 
-    drvRecipeMultiFileUpload.$inject = [ '$parse' ];
+    drvRecipeMultiFileUpload.$inject = ['$parse'];
 
     function drvRecipeMultiFileUpload($parse) {
         return {
@@ -22,7 +22,7 @@
                     var values = [];
                     angular.forEach(element[0].files, function (item) {
                         var value = {
-                           // File Name 
+                            // File Name 
                             name: item.name,
                             //File Size 
                             size: item.size,

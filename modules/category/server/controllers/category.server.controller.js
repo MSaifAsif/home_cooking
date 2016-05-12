@@ -17,12 +17,12 @@ exports.read = function (req, res) {
 exports.save = function (req, res) {
     var formBody = req.body;
     var newCat = new Category({
-        categoryName: formBody.catName, 
-        categoryDescription: formBody.desc, 
-        categoryType: formBody.type, 
+        categoryName: formBody.catName,
+        categoryDescription: formBody.desc,
+        categoryType: formBody.type,
         isActive: true
     });
-    newCat.save(function(err){
+    newCat.save(function (err) {
         if (err) {
             console.error('Error occured while saving new Category');
             return res.status(400).send({
