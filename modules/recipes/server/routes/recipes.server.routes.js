@@ -20,9 +20,16 @@ module.exports = function (app) {
     app.route('/api/recipes/get').get(recipesController.getById);
 
     // delete a recipe
-    app.route('/api/recipes/delete').post(recipesController.getById);
+    app.route('/api/recipes/delete').post(recipesController.delete);
 
     // Gets the count of recipes according to filters passed
     app.route('/api/recipes/count').get(recipesController.getCount);
+
+    app.route('/api/v1/recipes').get(recipesController.list);
+    app.route('/api/v1/recipes').post(recipesController.create);
+    app.route('/api/v1/recipes').delete(recipesController.delete);
+    app.route('/api/v1/recipes/:recipeId').get(recipesController.getById);
+
+
 
 };

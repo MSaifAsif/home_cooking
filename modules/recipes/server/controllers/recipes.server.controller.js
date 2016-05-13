@@ -14,7 +14,6 @@ var mongoose = require('mongoose'),
 exports.create = function (req, res) {
 
     var formBody = req.body;
-    console.log(formBody.title);
     var newRecipe = new Recipes({
         title: formBody.title,
         description: formBody.description,
@@ -25,14 +24,12 @@ exports.create = function (req, res) {
 
     newRecipe.save(function (err) {
         if (err) {
-            console.error('Error occured while saving new recipe');
             return res.status(400).send({
                 message: err
             });
         } else {
-            console.log('New recipe saved succesfully');
             res.status(200).send({
-                message: err
+                message: 'New recipe saved succesfully'
             });
         }
     });
@@ -125,8 +122,9 @@ exports.list = function (req, res) {
 
 
 exports.getById = function (req, res) {
-    console.log('Fetching recipe for id: ' + req.recipe_id);
-    Recipes.findById(req.recipe_id, function (err, result) {
+    var idToFetch = req.params.recipeId;
+    console.log('Fetching recipe for id: ' + idToFetch);
+    Recipes.findById(idToFetch, function (err, result) {
         if (err) {
             return res.status(400).send({
                 message: err

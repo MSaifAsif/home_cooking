@@ -20,6 +20,12 @@
             .state('recipes', {
                 url: '/recipes',
                 templateUrl: 'modules/recipes/client/views/recipes.client.view.html'
+            })
+            .state('edit-recipes', {
+                url: '/recipes/edit',
+                templateUrl: 'modules/recipes/client/views/edit-recipes.client.view.html',
+                controller: 'EditRecipesController',
+                controllerAs: 'vm'
             });
     }
 })();

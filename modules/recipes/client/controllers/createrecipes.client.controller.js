@@ -15,13 +15,14 @@
 
         $scope.imageFiles = [];
 
+        $scope.data = {};
+
         $scope.uploadAllFiles = function () {
             console.log($scope.imageFiles);
         };
 
         function getIngredientsList(ingredientsInputs) {
             var inList = [];
-            console.log(ingredientsInputs);
             for (var i = ingredientsInputs.length - 1; i >= 0; i--) {
                 if (ingredientsInputs[i].ingredient === undefined) {
                     continue;
@@ -33,12 +34,11 @@
 
         function getProcedureList(procedureInputs) {
             var inList = [];
-            console.log(procedureInputs);
             for (var i = procedureInputs.length - 1; i >= 0; i--) {
-                if (procedureInputs[i].ingredient === undefined) {
+                if (procedureInputs[i].direction === undefined) {
                     continue;
                 }
-                inList.push(ingredientsInputs[i].ingredient);
+                inList.push(procedureInputs[i].direction);
             }
             return inList;
         }
@@ -46,28 +46,23 @@
         $scope.createRecipe = function () {
             var ingredientsList = getIngredientsList($scope.ingredientsInputs);
             var procedureList = getProcedureList($scope.procedureInputs);
-            console.log(ingredientsList);
-            // var newRecipeData = {
-            //     // get form newRecipeData here
-            //     title: $scope.title,
-            //     description: $scope.description,
-            //     procedure: {
-            //         'ingredients': getIngredientsList(''),
-            //         'directions': getDirectionsList('')
-            //     },
-            //     category: ''
-            // };
-            // RecipeService.save({}, newRecipeData);
+            var newRecipe = new RecipeService();
+            newRecipe.title = $scope.data.title;
+            newRecipe.description = $scope.data.description;
+            newRecipe.procedure = {
+                'ingredients': ingredientsList,
+                'directions': procedureList
+            };
+            newRecipe.category = $scope.data.category.categoryType;
+            console.log(newRecipe);
+            newRecipe.$save();
         };
 
-        $scope.addMoreTextFields = function ($event, el) {
-            var elName = $event.target.name;
-            if ($event.keyCode === 13) {
-                if (elName === 'ingredients') {
-                    $scope.ingredientsInputs.push({});
-                } else if (elName === 'directions') {
-                    $scope.procedureInputs.push({});
-                }
+        $scope.addMoreTextFields = function (elName) {
+            if (elName === 'ingredients') {
+                $scope.ingredientsInputs.push({});
+            } else if (elName === 'directions') {
+                $scope.procedureInputs.push({});
             }
         };
     }
