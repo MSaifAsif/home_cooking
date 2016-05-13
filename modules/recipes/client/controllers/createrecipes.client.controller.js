@@ -14,21 +14,54 @@
         $scope.procedureInputs = [{}];
 
         $scope.imageFiles = [];
+
         $scope.uploadAllFiles = function () {
             console.log($scope.imageFiles);
         };
 
+        function getIngredientsList(ingredientsInputs) {
+            var inList = [];
+            console.log(ingredientsInputs);
+            for (var i = ingredientsInputs.length - 1; i >= 0; i--) {
+                if (ingredientsInputs[i].ingredient === undefined) {
+                    continue;
+                }
+                inList.push(ingredientsInputs[i].ingredient);
+            }
+            return inList;
+        }
+
+        function getProcedureList(procedureInputs) {
+            var inList = [];
+            console.log(procedureInputs);
+            for (var i = procedureInputs.length - 1; i >= 0; i--) {
+                if (procedureInputs[i].ingredient === undefined) {
+                    continue;
+                }
+                inList.push(ingredientsInputs[i].ingredient);
+            }
+            return inList;
+        }
+
         $scope.createRecipe = function () {
-            data = {
-                // get form data here
-                x:1
-            };
-            RecipeService.save({}, data);
+            var ingredientsList = getIngredientsList($scope.ingredientsInputs);
+            var procedureList = getProcedureList($scope.procedureInputs);
+            console.log(ingredientsList);
+            // var newRecipeData = {
+            //     // get form newRecipeData here
+            //     title: $scope.title,
+            //     description: $scope.description,
+            //     procedure: {
+            //         'ingredients': getIngredientsList(''),
+            //         'directions': getDirectionsList('')
+            //     },
+            //     category: ''
+            // };
+            // RecipeService.save({}, newRecipeData);
         };
 
         $scope.addMoreTextFields = function ($event, el) {
             var elName = $event.target.name;
-            console.log(elName);
             if ($event.keyCode === 13) {
                 if (elName === 'ingredients') {
                     $scope.ingredientsInputs.push({});
