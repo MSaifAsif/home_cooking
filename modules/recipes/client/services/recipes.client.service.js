@@ -9,6 +9,6 @@ angular.module('recipes').factory('RecipeService', ['$resource',
                 method: 'POST',
                 params: {}
             }
-        };
+        });
     }
 ]);

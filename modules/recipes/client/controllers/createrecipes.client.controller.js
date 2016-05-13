@@ -22,7 +22,7 @@
             data = {
                 // get form data here
                 x:1
-            }
+            };
             RecipeService.save({}, data);
         };
 

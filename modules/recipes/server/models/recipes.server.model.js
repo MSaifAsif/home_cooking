@@ -46,7 +46,10 @@ var RecipesSchema = new Schema({
     },
     media: {
         type: Schema.Types.Mixed,
-        default: {}
+        default: {
+            step1: '',
+            vid: ''
+        }
     },
     likes: {
         type: Number,
@@ -64,6 +67,21 @@ var RecipesSchema = new Schema({
             'snacks'
         ],
         required: true
+    },
+    details: {
+        type: Schema.Types.Mixed,
+        default: {
+            total_calories: 0,
+            serving_size: 0,
+            cooking_time: 0,
+            nutrient_value: {
+                'fats': 0,
+                'carbs': 0,
+                'protein': 0,
+                'cholestrol': 0,
+                'sodium': 0
+            }
+        }
     }
 });
 
