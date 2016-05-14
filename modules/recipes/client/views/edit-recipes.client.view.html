@@ -20,88 +20,62 @@
 }
 </script>
 
-<section data-ng-controller="EditRecipesController">
-    <div class="page-header">
+<section>
+    <div class="page-header" data-ng-controller="EditRecipesController" >
         <h1>Edit/Find Recipe</h1>
     </div>
 
-        <div class="col-md-12">
-        <form class="form-horizontal" data-ng-submit="findRecipes()" name="createRecipeForm" novalidate>
+    <div class="col-md-12">
+        <form class="form-horizontal" data-ng-submit="findRecipes()" name="findRecipeForm" novalidate>
             <fieldset>
                <div class="form-group" data-ng-controller="CategoryController" data-ng-init="initCategories()" >
                     <label class="control-label" for="category">Category</label>
                     <div class="controls">
-                        <select class="form-control" data-ng-model="data.category" name="category" id="category" ng-options="cat.categoryDescription for cat in categories" >
+                        <select class="form-control" data-ng-model="data.category" name="category" id="category" ng-options="cat.categoryType for cat in categories" >
                       </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="description">Recipe ID</label>
+                    <div class="controls">
+                        <input type="text" name="description" data-ng-model="data.recipeId" id="description" class="form-control" cols="30" rows="10" placeholder="Short desciption about the recipe"></input>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="description">Keyword</label>
+                    <div class="controls">
+                        <input type="text" name="description" data-ng-model="data.keyword" id="description" class="form-control" cols="30" rows="10" placeholder="Short desciption about the recipe"></input>
                     </div>
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-default" value="Find">
                 </div>
-
             </fieldset>
         </form>
+    </div>
+
+    <div class="col-md-12">
+        <div class="row">
+        <span>Total results: {{data.retrievedRecipesCount}}</span>
+        <table class="table table-hover table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Summary</th>
+                    <th>Created date</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="rec in data.retrievedRecipes">
+                <td>{{ rec.description }}</td>
+                <td>{{ rec.createdDate }}</td>
+                <td>{{ rec.isActive }}</td>
+                <td> <a> Click for more details </a> </td>
+              </tr>
+          </tbody>
+        </table>
         </div>
-
-        <span>_______________________________________</span>
-        <div class="col-md-12">
-        <form class="form-horizontal" data-ng-submit="createRecipe()" name="createRecipeForm" novalidate>
-            <fieldset>
-                <div class="form-group">
-                    <label class="control-label" for="title">Title</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="data.title" id="title" class="form-control" placeholder="What title you want to give to the recipe" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="description">Description</label>
-                    <div class="controls">
-                        <input type="text" name="description" data-ng-model="data.description" id="description" class="form-control" cols="30" rows="10" placeholder="Short desciption about the recipe"></input>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="ingredients">Ingredients</label>
-                    <div ng-repeat="ing in ingredientsInputs track by $index" class="controls">
-                        <input type="text" name="ingredients" data-ng-model="ing.ingredient" id="ingredients" class="form-control" cols="30" rows="10" placeholder="Ingredient {{$index+1}} (press enter for next)"></input>
-                    </div>
-                    <button type="button" class="btn btn-default" ng-click="addMoreTextFields('ingredients')">Add more</button>
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="directions">Directions</label>
-                    <div class="controls" ng-repeat="proc in procedureInputs track by $index">
-                        <input type="text" name="directions" data-ng-model="proc.direction" id="directions" class="form-control" cols="30" rows="10" placeholder="Step {{$index+1}} (each on a new line)"></input>
-                    </div>
-                    <button type="button" class="btn btn-default" ng-click="addMoreTextFields('directions')">Add more</button>
-                </div>
-                <div class="form-group" data-ng-controller="CategoryController" data-ng-init="initCategories()" >
-                    <label class="control-label" for="category">Category</label>
-                    <div class="controls">
-                        <select class="form-control" data-ng-model="data.category" name="category" id="category" ng-options="cat.categoryDescription for cat in categories" >
-                      </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="category">Images</label>
-                    <div class="controls">
-                        <span class="btn btn-default btn-file">
-                            Browse<input type="file" drv-recipe-multi-file-upload="imageFiles" multiple />
-                        </span>
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div ng-repeat="file in imageFiles">
-                                  <span class="glyphicons glyphicons-upload">-</span> {{file.name}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-default">
-                </div>
-                <div data-ng-show="error" class="text-danger">
-                    <strong data-ng-bind="error"></strong>
-                </div>
-            </fieldset>
-        </form>
     </div>
 </section>

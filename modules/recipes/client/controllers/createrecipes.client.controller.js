@@ -54,7 +54,6 @@
                 'directions': procedureList
             };
             newRecipe.category = $scope.data.category.categoryType;
-            console.log(newRecipe);
             newRecipe.$save();
         };
 

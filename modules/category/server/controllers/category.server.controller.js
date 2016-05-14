@@ -38,7 +38,7 @@ exports.save = function (req, res) {
 };
 
 /**
- * List of 
+ * List of all categories in the system
  */
 exports.list = function (req, res) {
     Category.find().exec(function (err, categories) {

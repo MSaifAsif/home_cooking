@@ -1,22 +1,32 @@
-(function () {
-  'use strict';
+'use strict';
 
-  angular
-    .module('recipes')
-    .factory('Recipesfinder', Recipesfinder);
+angular.module('recipes').factory('RecipeFinderService', ['$resource',
+    function ($resource) {
 
-  Recipesfinder.$inject = ['$resource'];
 
-  function Recipesfinder($resource) {
-    // Recipesfinder service logic
-    // ...
-
-    // Public API
-    return {
-      findByFilters: function (filtersObj) {
-        
-        return true;
-      }
-    };
-  }
-})();
+        // Public API
+        return {
+            findRecipesMatchingFilters: $resource('/api/v1/recipes/find', {}, {
+                query: {
+                    method: 'GET',
+                    isArray: true,
+                    params: {
+                        categoryType: '@categoryType',
+                        recipeId: '@recipeId',
+                        keywords: '@keywords'
+                    }
+                }
+            }),
+            countRecipesMatchingFilters: $resource('/api/v1/recipes/count', {}, {
+                get: {
+                    method: 'GET',
+                    params: {
+                        categoryType: '@categoryType',
+                        recipeId: '@recipeId',
+                        keywords: '@keywords'
+                    }
+                }
+            })
+        };
+    }
+]);

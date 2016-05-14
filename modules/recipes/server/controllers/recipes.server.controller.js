@@ -121,16 +121,54 @@ exports.list = function (req, res) {
 };
 
 
-exports.getById = function (req, res) {
-    var idToFetch = req.params.recipeId;
-    console.log('Fetching recipe for id: ' + idToFetch);
-    Recipes.findById(idToFetch, function (err, result) {
+exports.findByFilters = function (req, res) {
+    var queryFilters = {};
+    var reqQuery = req.query;
+    if (reqQuery.recipeId) {
+        queryFilters._id = new ObjectId(req.query.recipeId.toString());
+    }
+    if (reqQuery.description) {
+        queryFilters.description = new RegExp('^'+req.query.keywords.toString()+'$', 'i');
+    }
+    if (reqQuery.categoryType) {
+        queryFilters.category = reqQuery.categoryType;
+    }
+
+    Recipes.find(queryFilters, function (err, result) {
         if (err) {
             return res.status(400).send({
                 message: err
             });
         } else {
             res.json(result);
+        }
+    });
+};
+
+
+exports.countByFilters = function (req, res) {
+    var queryFilters = {};
+    var reqQuery = req.query;
+    if (reqQuery.recipeId) {
+        queryFilters._id = new ObjectId(req.query.recipeId.toString());
+    }
+    if (reqQuery.description) {
+        queryFilters.description = new RegExp('^'+req.query.keywords.toString()+'$', 'i');
+    }
+    if (reqQuery.categoryType) {
+        queryFilters.category = reqQuery.categoryType;
+    }
+
+    Recipes.count(queryFilters).exec(function (err, result) {
+        if (err) {
+            return res.status(400).send({
+                message: err
+            });
+        } else {
+            console.log(result);
+            res.status(200).send({
+                total_recipes: result
+            });
         }
     });
 };
