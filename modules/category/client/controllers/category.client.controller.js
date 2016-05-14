@@ -19,6 +19,7 @@
                 angular.forEach(response, function (item) {
                     $scope.categories.push(item);
                 });
+                $scope.data.category = $scope.categories[0];
             });
         }
     }
