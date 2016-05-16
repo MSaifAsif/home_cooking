@@ -19,17 +19,18 @@ exports.create = function (req, res) {
         description: formBody.description,
         procedure: formBody.procedure,
         media: formBody.media,
-        category: formBody.category
+        category: formBody.category,
+        tags: formBody.tags
     });
 
     newRecipe.save(function (err) {
         if (err) {
             return res.status(400).send({
-                message: err
+                api_message: err
             });
         } else {
             res.status(200).send({
-                message: 'New recipe saved succesfully'
+                api_message: 'New recipe saved succesfully'
             });
         }
     });
@@ -63,7 +64,7 @@ exports.getCount = function (req, res) {
     Recipes.count(filters).exec(function (err, recipesCount) {
         if (err) {
             return res.status(400).send({
-                message: err
+                api_message: err
             });
         } else {
             res.status(200).send({
@@ -112,7 +113,7 @@ exports.list = function (req, res) {
     Recipes.find().exec(function (err, recipes) {
         if (err) {
             return res.status(400).send({
-                message: err
+                api_message: err
             });
         } else {
             res.json(recipes);
@@ -137,7 +138,7 @@ exports.findByFilters = function (req, res) {
     Recipes.find(queryFilters, function (err, result) {
         if (err) {
             return res.status(400).send({
-                message: err
+                api_message: err
             });
         } else {
             res.json(result);
@@ -162,7 +163,7 @@ exports.countByFilters = function (req, res) {
     Recipes.count(queryFilters).exec(function (err, result) {
         if (err) {
             return res.status(400).send({
-                message: err
+                api_message: err
             });
         } else {
             console.log(result);
@@ -186,7 +187,7 @@ exports.find_only = function (req, res) {
     Recipes.find(query).exec(function (err, recipes) {
         if (err) {
             return res.status(400).send({
-                message: err
+                api_message: err
             });
         } else {
             res.status(200).send({
@@ -212,7 +213,7 @@ exports.find_any = function (req, res) {
     Recipes.find(query).exec(function (err, recipes) {
         if (err) {
             return res.status(400).send({
-                message: err
+                api_message: err
             });
         } else {
             res.status(200).send({

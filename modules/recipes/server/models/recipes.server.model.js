@@ -82,6 +82,9 @@ var RecipesSchema = new Schema({
                 'sodium': 0
             }
         }
+    },
+    tags: {
+        type: [String]
     }
 });
 
