@@ -5,9 +5,9 @@
         .module('recipes')
         .controller('EditRecipesController', EditRecipesController);
 
-    EditRecipesController.$inject = ['$scope', 'RecipeFinderService'];
+    EditRecipesController.$inject = ['$scope', 'RecipeFinderService', '$http'];
 
-    function EditRecipesController($scope, RecipeFinderService) {
+    function EditRecipesController($scope, RecipeFinderService, $http) {
         var vm = this;
         $scope.data = {};
 
@@ -15,6 +15,21 @@
             var date =  new Date(dateObj);
             return date.toDateString();
         }
+
+        $scope.data.tagwords = [{
+            text: 'tag1'
+        }];
+
+        $scope.loadTagWords = function (query) {
+            console.log('fetching');
+            return [{
+                text: 'tag1'
+            }, {
+                text: 'tag2'
+            }, {
+                text: 'tag3'
+            }];
+        };
 
         $scope.findRecipes = function() {
             // empty the results before firing query
