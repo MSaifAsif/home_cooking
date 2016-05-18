@@ -16,26 +16,15 @@
             return date.toDateString();
         }
 
-        $scope.data.tagwords = [{
-            text: 'tag1'
+        $scope.data.tagwordsList = [{
+            name: 'abc'
+        }, {
+            name: 'bcd'
+        }, {
+            name: 'ced'
         }];
 
-        $scope.tags = [
-            { text: 'Tag1' },
-            { text: 'Tag2' },
-            { text: 'Tag3' }
-          ];
-
-        $scope.loadTagWords = function (query) {
-            console.log('fetching');
-            return [{
-                text: 'tag1'
-            }, {
-                text: 'tag2'
-            }, {
-                text: 'tag3'
-            }];
-        };
+        $scope.data.tagwords = $scope.data.tagwordsList[0];
 
         $scope.findRecipes = function() {
             // empty the results before firing query

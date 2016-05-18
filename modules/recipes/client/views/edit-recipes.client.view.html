@@ -42,20 +42,11 @@
                     </div>
                 </div>
 
-                <div class="tag" ng-controller="EditRecipesController">
-                    Model : {{data.tagwords}}
-                    <tags-input ng-model="data.tagwords">
-                        <auto-complete source="loadTagWords($query)"></auto-complete>
-                    </tags-input>
-                </div>
-
                 <div class="form-group">
-                    <label class="control-label" for="tagwords">Keyword</label>
+                    <label class="control-label" for="tagwords">Tags</label>
                     <div class="controls">
-                        Model : {{data.tagwords}}
-                        <tags-input data-ng-model="data.tagwords" name="tagwords" id="tagwords" class="form-control">
-                            <auto-complete source="loadTagWords($query)"></auto-complete>
-                        </tags-input>
+                        <select class="form-control" data-ng-model="data.tagwords" name="tagwords" id="tagwords" ng-options="tag.name for tag in data.tagwordsList" multiple>
+                      </select>
                     </div>
                 </div>
                 <div class="form-group">
@@ -64,11 +55,6 @@
             </fieldset>
         </form>
     </div>
-
-  <div ng-controller="EditRecipesController">
-    <tags-input ng-model="tags"></tags-input>
-    <p>Model: {{tags}}</p>
-  </div>
 
     <div class="col-md-12">
         <div class="row">
