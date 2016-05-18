@@ -20,6 +20,12 @@
             text: 'tag1'
         }];
 
+        $scope.tags = [
+            { text: 'Tag1' },
+            { text: 'Tag2' },
+            { text: 'Tag3' }
+          ];
+
         $scope.loadTagWords = function (query) {
             console.log('fetching');
             return [{
