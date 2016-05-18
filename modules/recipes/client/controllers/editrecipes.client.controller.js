@@ -16,15 +16,17 @@
             return date.toDateString();
         }
 
-        $scope.data.tagwordsList = [{
-            name: 'abc'
-        }, {
-            name: 'bcd'
-        }, {
-            name: 'ced'
-        }];
+        $scope.data.tagwordsList = [
+            // load initial level tags here
+            { text: 'Tag1' },
+            { text: 'Tag2' },
+            { text: 'Tag3' }
+        ];
 
-        $scope.data.tagwords = $scope.data.tagwordsList[0];
+        $scope.loadTags = function (query){
+            // get the autocomplete list
+            return [{}];
+        };
 
         $scope.findRecipes = function() {
             // empty the results before firing query
