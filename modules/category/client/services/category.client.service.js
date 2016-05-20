@@ -6,7 +6,7 @@ angular.module('category').factory('CategoryService', ['$resource',
         // ...
 
         // Public API
-        return $resource('/api/category', {}, {
+        return $resource('/api/v1/category', {}, {
             query: {
                 method: 'GET',
                 params: {},
