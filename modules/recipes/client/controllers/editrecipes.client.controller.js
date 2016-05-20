@@ -5,9 +5,9 @@
         .module('recipes')
         .controller('EditRecipesController', EditRecipesController);
 
-    EditRecipesController.$inject = ['$scope', 'RecipeFinderService', '$http', 'TagwordService'];
+    EditRecipesController.$inject = ['$scope', 'RecipeFinderService', 'TagwordService'];
 
-    function EditRecipesController($scope, RecipeFinderService, $http, TagwordService) {
+    function EditRecipesController($scope, RecipeFinderService, TagwordService) {
         var vm = this;
         $scope.data = {};
 
