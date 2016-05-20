@@ -21,7 +21,7 @@
 </script>
 
 <section>
-    <div class="page-header" data-ng-controller="EditRecipesController" >
+    <div class="page-header" data-ng-controller="EditRecipesController">
         <h1>Edit/Find Recipe</h1>
     </div>
 
@@ -45,8 +45,8 @@
                 <div class="form-group">
                     <label class="control-label" for="tagwords">Tags</label>
                     <div class="controls">
-                       <tags-input data-ng-model="data.tagwordsList" name="tagwords" id="tagwords" >
-                            <auto-complete source="loadTags($query)"></auto-complete>
+                       <tags-input data-ng-model="data.tagwords" name="tagwords" id="tagwords" >
+                            <auto-complete source="loadTagwords($query)"></auto-complete>
                         </tags-input>
                     </div>
                 </div>

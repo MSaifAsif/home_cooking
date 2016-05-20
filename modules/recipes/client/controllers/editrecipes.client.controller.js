@@ -5,9 +5,9 @@
         .module('recipes')
         .controller('EditRecipesController', EditRecipesController);
 
-    EditRecipesController.$inject = ['$scope', 'RecipeFinderService', '$http'];
+    EditRecipesController.$inject = ['$scope', 'RecipeFinderService', '$http', 'TagwordService'];
 
-    function EditRecipesController($scope, RecipeFinderService, $http) {
+    function EditRecipesController($scope, RecipeFinderService, $http, TagwordService) {
         var vm = this;
         $scope.data = {};
 
@@ -16,16 +16,16 @@
             return date.toDateString();
         }
 
-        $scope.data.tagwordsList = [
+        $scope.data.tagwords = [
             // load initial level tags here
-            { text: 'Tag1' },
-            { text: 'Tag2' },
-            { text: 'Tag3' }
+            { text: 'breakfast' }
         ];
 
-        $scope.loadTags = function (query){
-            // get the autocomplete list
-            return [{}];
+        $scope.loadTagwords = function(query) {
+            console.log(query);
+            // TagwordService.query(query, function(tagwords){
+            //     console.log(tagwords);
+            // });
         };
 
         $scope.findRecipes = function() {
