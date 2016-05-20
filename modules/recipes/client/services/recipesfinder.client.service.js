@@ -13,7 +13,7 @@ angular.module('recipes').factory('RecipeFinderService', ['$resource',
                     params: {
                         categoryType: '@categoryType',
                         recipeId: '@recipeId',
-                        keywords: '@keywords'
+                        tagwords: '@tagwords'
                     }
                 }
             }),
@@ -23,7 +23,7 @@ angular.module('recipes').factory('RecipeFinderService', ['$resource',
                     params: {
                         categoryType: '@categoryType',
                         recipeId: '@recipeId',
-                        keywords: '@keywords'
+                        tagwords: '@tagwords'
                     }
                 }
             })

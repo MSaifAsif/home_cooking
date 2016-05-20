@@ -16,6 +16,15 @@
             return date.toDateString();
         }
 
+        function getTagwordsForQuery(tagwordsTextList) {
+            // need to contruct a comma separated string
+            var arr = [];
+            for (var i = tagwordsTextList.length - 1; i >= 0; i--) {
+                arr.push(tagwordsTextList[i].text);
+            }
+            return arr.join(',');
+        }
+
         $scope.loadTagwords = function(query) {
             return TagwordService.query().$promise;
         };
@@ -23,11 +32,13 @@
         $scope.findRecipes = function() {
             // empty the results before firing query
             $scope.data.retrievedRecipes = [];
-            var searchKeyword = $scope.data.keyword;
+
+            var searchTags = getTagwordsForQuery($scope.data.tagwords);
+            console.log(searchTags);
             var recipeId = $scope.data.recipeId;
             var category = $scope.data.category.categoryType;
             var filtersData = {
-                keywords: searchKeyword,
+                tagwords: searchTags,
                 recipeId: recipeId,
                 categoryType: category
             };

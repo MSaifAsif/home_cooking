@@ -128,8 +128,13 @@ exports.findByFilters = function (req, res) {
     if (reqQuery.recipeId) {
         queryFilters._id = new ObjectId(req.query.recipeId.toString());
     }
-    if (reqQuery.description) {
-        queryFilters.description = new RegExp('^'+req.query.keywords.toString()+'$', 'i');
+    if (reqQuery.tagwords) {
+        var tagwordsList = reqQuery.tagwords.split(/,/);
+        queryFilters.$or = [];
+
+        tagwordsList.forEach(function(tag){
+            queryFilters.$or.push({tags: tag});
+        });
     }
     if (reqQuery.categoryType) {
         queryFilters.category = reqQuery.categoryType;
@@ -153,8 +158,13 @@ exports.countByFilters = function (req, res) {
     if (reqQuery.recipeId) {
         queryFilters._id = new ObjectId(req.query.recipeId.toString());
     }
-    if (reqQuery.description) {
-        queryFilters.description = new RegExp('^'+req.query.keywords.toString()+'$', 'i');
+    if (reqQuery.tagwords) {
+        var tagwordsList = reqQuery.tagwords.split(/,/);
+        queryFilters.$or = [];
+
+        tagwordsList.forEach(function(tag){
+            queryFilters.$or.push({tags: tag});
+        });
     }
     if (reqQuery.categoryType) {
         queryFilters.category = reqQuery.categoryType;
@@ -166,7 +176,7 @@ exports.countByFilters = function (req, res) {
                 api_message: err
             });
         } else {
-            console.log(result);
+            console.log('Total results found:' + result);
             res.status(200).send({
                 total_recipes: result
             });
