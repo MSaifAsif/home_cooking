@@ -40,6 +40,12 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="control-label" for="tagwords">Tagwords</label>
+                    <div class="controls">
+                        <input type="text" name="tagwords" data-ng-model="data.tagwords" id="tagwords" class="form-control" cols="30" rows="10" placeholder="Tag keywords to associate with the recipe"></input>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="control-label" for="ingredients">Ingredients</label>
                     <div ng-repeat="ing in ingredientsInputs track by $index" class="controls">
                         <input type="text" name="ingredients" data-ng-model="ing.ingredient" id="ingredients" class="form-control" cols="30" rows="10" placeholder="Ingredient {{$index+1}} (press enter for next)"></input>

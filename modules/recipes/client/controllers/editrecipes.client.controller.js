@@ -19,6 +19,9 @@
         function getTagwordsForQuery(tagwordsTextList) {
             // need to contruct a comma separated string
             var arr = [];
+            if (tagwordsTextList === undefined) {
+                return '';
+            }
             for (var i = tagwordsTextList.length - 1; i >= 0; i--) {
                 arr.push(tagwordsTextList[i].text);
             }
