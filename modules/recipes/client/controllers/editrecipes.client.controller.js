@@ -10,30 +10,14 @@
     function EditRecipesController($scope, RecipeFinderService, $http, TagwordService) {
         var vm = this;
         $scope.data = {};
-        // $scope.data.tag = {};
 
         function parseDateToHumanReadable(dateObj) {
             var date =  new Date(dateObj);
             return date.toDateString();
         }
 
-        $scope.data.tagwords = [
-            // load initial level tags here
-            { text: 'breakfast' }
-        ];
-
         $scope.loadTagwords = function(query) {
-            var tagSuggestions = [];
-            TagwordService.query(query, function(tagwords){
-                angular.forEach(tagwords, function (tagObject) {
-                    console.log(tagObject.key);
-                    var innerObject = {
-                        text: tagObject.key
-                    };
-                    tagSuggestions.push(innerObject);
-                });
-            });
-            return tagSuggestions;
+            return TagwordService.query().$promise;
         };
 
         $scope.findRecipes = function() {

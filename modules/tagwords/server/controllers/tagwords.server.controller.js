@@ -45,7 +45,11 @@ exports.list = function (req, res) {
                 message: err
             });
         } else {
-            res.json(tagwords);
+            var tagSuggestions = [];
+            for (var i = tagwords.length - 1; i >= 0; i--) {
+                tagSuggestions.push({text: tagwords[i].key});
+            }
+            res.json(tagSuggestions);
         }
     });
 
