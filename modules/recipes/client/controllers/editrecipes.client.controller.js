@@ -10,6 +10,7 @@
     function EditRecipesController($scope, RecipeFinderService, $http, TagwordService) {
         var vm = this;
         $scope.data = {};
+        // $scope.data.tag = {};
 
         function parseDateToHumanReadable(dateObj) {
             var date =  new Date(dateObj);
@@ -22,10 +23,17 @@
         ];
 
         $scope.loadTagwords = function(query) {
-            console.log(query);
-            // TagwordService.query(query, function(tagwords){
-            //     console.log(tagwords);
-            // });
+            var tagSuggestions = [];
+            TagwordService.query(query, function(tagwords){
+                angular.forEach(tagwords, function (tagObject) {
+                    console.log(tagObject.key);
+                    var innerObject = {
+                        text: tagObject.key
+                    };
+                    tagSuggestions.push(innerObject);
+                });
+            });
+            return tagSuggestions;
         };
 
         $scope.findRecipes = function() {

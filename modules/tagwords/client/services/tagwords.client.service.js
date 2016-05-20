@@ -8,7 +8,9 @@ angular.module('tagwords').factory('TagwordService', ['$resource',
         // Public API
         return $resource('/api/v1/tagwords', {}, {
             query: {
-                method: 'GET'
+                method: 'GET',
+                params: {},
+                isArray: true
             }
         });
     }
