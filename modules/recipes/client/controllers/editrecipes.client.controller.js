@@ -5,9 +5,9 @@
         .module('recipes')
         .controller('EditRecipesController', EditRecipesController);
 
-    EditRecipesController.$inject = ['$scope', 'RecipeFinderService', 'TagwordService'];
+    EditRecipesController.$inject = ['$scope', 'RecipeSearchService', 'TagwordService'];
 
-    function EditRecipesController($scope, RecipeFinderService, TagwordService) {
+    function EditRecipesController($scope, RecipeSearchService, TagwordService) {
         var vm = this;
         $scope.data = {};
 
@@ -46,12 +46,12 @@
             };
 
             // first get count of results
-            var q = RecipeFinderService.countRecipesMatchingFilters.get(filtersData, function(count){
+            var q = RecipeSearchService.countRecipesMatchingFilters.get(filtersData, function(count){
                 $scope.data.retrievedRecipesCount = count.total_recipes;
             });
 
             // Now get the results
-            RecipeFinderService.findRecipesMatchingFilters.query(filtersData, function(retrievedRecipes) {
+            RecipeSearchService.findRecipesMatchingFilters.query(filtersData, function(retrievedRecipes) {
                 angular.forEach(retrievedRecipes, function(item) {
                     var innerObject = {};
                     innerObject.id = item._id;

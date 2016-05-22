@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('recipes').factory('RecipeFinderService', ['$resource',
+angular.module('recipes').factory('RecipeSearchService', ['$resource',
     function ($resource) {
 
 
