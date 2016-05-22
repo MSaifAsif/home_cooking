@@ -37,7 +37,6 @@
             $scope.data.retrievedRecipes = [];
 
             var searchTags = getTagwordsForQuery($scope.data.tagwords);
-            console.log(searchTags);
             var recipeId = $scope.data.recipeId;
             var category = $scope.data.category.categoryType;
             var filtersData = {
