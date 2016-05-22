@@ -26,6 +26,12 @@
                 templateUrl: 'modules/recipes/client/views/edit-recipes.client.view.html',
                 controller: 'EditRecipesController',
                 controllerAs: 'vm'
+            })
+            .state('recipe-details-page', {
+                url: '/public/recipes/details',
+                templateUrl: 'modules/recipes/client/views/public/recipe-detail.client.view.html',
+                controller: 'RecipesDetailController',
+                controllerAs: 'vm'
             });
     }
 })();
