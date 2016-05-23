@@ -10,14 +10,14 @@
     function RecipesDetailController($scope, $stateParams, RecipeService) {
         var vm = this;
 
+        $scope.data = {};
+
         $scope.loadRecipeDetails = function (){
-            var recipeIdFilter = {
+            RecipeService.get({
                 recipeId: $stateParams.recipeId
-            };
-            RecipeService.get(recipeIdFilter, function (responseRecipe){
-                console.log(responseRecipe);
+            }).$promise.then(function(recipeResponse){
+                $scope.data.recipeBean = recipeResponse;
             });
         };
-
     }
 })();
