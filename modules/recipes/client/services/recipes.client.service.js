@@ -10,11 +10,15 @@ angular.module('recipes').factory('RecipeService', ['$resource',
             },
             get: {
                 method: 'GET',
-                params: {recipeId: '@recipeId'}
+                params: {
+                    recipeId: '@recipeId'
+                }
             },
             delete: {
                 method: 'DELETE',
-                params: {recipeId: '@recipeId'}
+                params: {
+                    recipeId: '@recipeId'
+                }
             }
         });
     }

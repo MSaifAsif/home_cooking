@@ -22,9 +22,8 @@ module.exports = function (app) {
     // delete a recipe
     app.route('/api/recipes/delete').post(recipesController.delete);
 
-    // Gets the count of recipes according to filters passed
-
-    app.route('/api/v1/recipes').get(recipesController.list);
+    // new api, to work with true rest URLs structure
+    app.route('/api/v1/recipes').get(recipesController.get);  // get by ID
     app.route('/api/v1/recipes').post(recipesController.create);
     app.route('/api/v1/recipes').delete(recipesController.delete);
     app.route('/api/v1/recipes/find').get(recipesController.findByFilters);

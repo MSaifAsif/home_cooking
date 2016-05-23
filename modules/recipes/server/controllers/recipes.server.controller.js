@@ -207,6 +207,19 @@ exports.find_only = function (req, res) {
     });
 };
 
+exports.get = function (req, res) {
+    var recipeId = new ObjectId(req.query.recipeId.toString());
+    Recipes.findOne({ _id: recipeId}, function (err, recipeDocument){
+        if (err) {
+            return res.status(400).send({
+                api_message: err
+            });
+        } else {
+            res.json(recipeDocument);
+        }
+    });
+};
+
 
 /**
  * OR filter query

@@ -11,8 +11,12 @@
         var vm = this;
 
         $scope.loadRecipeDetails = function (){
-            var recipeId = $stateParams.recipeId;
-            console.log('Fetching', recipeId);
+            var recipeIdFilter = {
+                recipeId: $stateParams.recipeId
+            };
+            RecipeService.get(recipeIdFilter, function (responseRecipe){
+                console.log(responseRecipe);
+            });
         };
 
     }
