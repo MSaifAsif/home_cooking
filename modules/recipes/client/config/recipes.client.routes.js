@@ -28,8 +28,8 @@
                 controllerAs: 'vm'
             })
             .state('recipe-details-page', {
-                url: '/public/recipes/details/:recipeId',
-                templateUrl: 'modules/recipes/client/views/public/recipe-detail.client.view.html',
+                url: '/pub/recipes/details/:recipeId',
+                templateUrl: 'modules/recipes/client/views/pub/recipe-detail.client.view.html',
                 controller: 'RecipesDetailController',
                 controllerAs: 'vm'
             });

@@ -25,6 +25,10 @@ module.exports = {
         css: [
             'modules/*/client/css/*.css'
         ],
+        img: [
+            'modules/*/client/img/**/*.png',
+            'modules/*/client/images/**/*.png'
+        ],
         less: [
             'modules/*/client/less/*.less'
         ],
