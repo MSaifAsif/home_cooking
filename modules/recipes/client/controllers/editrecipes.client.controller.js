@@ -38,7 +38,9 @@
 
             var searchTags = getTagwordsForQuery($scope.data.tagwords);
             var recipeId = $scope.data.recipeId;
-            var category = $scope.data.category.categoryType;
+            if ($scope.data.category) {
+                var category = $scope.data.category.categoryType || '';
+            }
             var filtersData = {
                 tagwords: searchTags,
                 recipeId: recipeId,
