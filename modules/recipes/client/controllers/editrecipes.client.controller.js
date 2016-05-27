@@ -38,6 +38,9 @@
 
             var searchTags = getTagwordsForQuery($scope.data.tagwords);
             var recipeId = $scope.data.recipeId;
+
+            // sanity check for missing category, although we may never have this
+            // remove this TODO
             if ($scope.data.category) {
                 var category = $scope.data.category.categoryType || '';
             }
