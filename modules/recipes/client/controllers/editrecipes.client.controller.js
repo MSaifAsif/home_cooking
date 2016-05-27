@@ -34,15 +34,16 @@
 
         $scope.findRecipes = function() {
             // empty the results before firing query
-            $scope.data.retrievedRecipes = [];
+            var category;
 
+            $scope.data.retrievedRecipes = [];
             var searchTags = getTagwordsForQuery($scope.data.tagwords);
             var recipeId = $scope.data.recipeId;
 
             // sanity check for missing category, although we may never have this
             // remove this TODO
             if ($scope.data.category) {
-                var category = $scope.data.category.categoryType || '';
+                category = $scope.data.category.categoryType || '';
             }
             var filtersData = {
                 tagwords: searchTags,
