@@ -35,13 +35,8 @@
                 directionImage: '@'
             },
             link: function(scope, element, attrs) {
-                var template;
-                if (scope.recipeNumber % 2 === 0) {
-                    template = $compile(evenTemplate)(scope);
-                } else {
-                    template = $compile(oddTemplate)(scope);
-                }
-                element.append(template);
+                var template = scope.recipeNumber % 2 === 0 ? evenTemplate : oddTemplate;
+                element.append($compile(template)(scope));
             }
         };
     }

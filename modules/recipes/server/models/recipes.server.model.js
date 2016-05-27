@@ -30,8 +30,8 @@ var RecipesSchema = new Schema({
         default: {
             'ingredients': [String],
             'directions': [{
-                'step': String,
-                'img': String
+                'step': '',
+                'img': ''
             }]
         }
     },
@@ -46,13 +46,6 @@ var RecipesSchema = new Schema({
     isActive: {
         type: Boolean,
         default: true
-    },
-    media: {
-        type: Schema.Types.Mixed,
-        default: {
-            step1: '',
-            vid: ''
-        }
     },
     likes: {
         type: Number,
