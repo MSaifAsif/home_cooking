@@ -23,7 +23,7 @@
                    <div class="col-md-12">
                         <div ng-repeat="direction in data.recipeBean.procedure.directions track by $index" class="media">
                           <div class="media">
-                            <drv-recipe-display-steps recipe-number="{{$index}}" recipe-direction="{{direction}}" />
+                            <drv-recipe-display-steps recipe-number="{{$index}}" recipe-direction="{{direction}}" direction-image={{}} />
                           </div>
                         </div>
                     <div>

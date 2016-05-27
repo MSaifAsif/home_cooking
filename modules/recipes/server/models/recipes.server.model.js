@@ -29,7 +29,10 @@ var RecipesSchema = new Schema({
         type: Schema.Types.Mixed,
         default: {
             'ingredients': [String],
-            'directions': [String]
+            'directions': [{
+                'step': String,
+                'img': String
+            }]
         }
     },
     createdDate: {
