@@ -13,7 +13,6 @@
             link: function postLink(scope, element, attrs) {
                 // Drv recipe multi file upload directive logic
                 // ...
-                console.log('here');
                 element.text('this is the drvRecipeMultiFileUpload directive');
                 var model = $parse(attrs.drvRecipeMultiFileUpload);
                 var isMultiple = attrs.multiple;

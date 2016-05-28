@@ -56,6 +56,7 @@
                     <label class="control-label" for="directions">Directions</label>
                     <div class="controls" ng-repeat="proc in procedureInputs track by $index">
                         <input type="text" name="directions" data-ng-model="proc.direction" id="directions" class="form-control" cols="30" rows="10" placeholder="Step {{$index+1}} (each on a new line)"></input>
+                        <input type="file" drv-recipe-single-file-upload="uploadStepFileHandler" />
                     </div>
                     <button type="button" class="btn btn-default" ng-click="addMoreTextFields('directions')">Add more</button>
                 </div>

@@ -17,10 +17,6 @@
 
         $scope.data = {};
 
-        $scope.uploadAllFiles = function () {
-            console.log($scope.imageFiles);
-        };
-
         function getIngredientsList(ingredientsInputs) {
             var inList = [];
             for (var i = ingredientsInputs.length - 1; i >= 0; i--) {
@@ -63,6 +59,13 @@
             } else if (elName === 'directions') {
                 $scope.procedureInputs.push({});
             }
+        };
+
+        $scope.uploadStepFileHandler = function(event) {
+            var fileElement = event.target.files[0];
+            console.log(fileElement);
+            // upload this file and append to procedure inputs object
+            // console.log($scope.procedureInputs);
         };
     }
 })();
