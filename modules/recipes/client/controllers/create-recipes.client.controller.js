@@ -30,23 +30,25 @@
             return inList;
         }
 
-        function getProcedureList(procedureInputs) {
+        function getProcedureList(procedureInputs, fileInputs) {
             var inList = [];
             for (var i = procedureInputs.length - 1; i >= 0; i--) {
                 if (procedureInputs[i].direction === undefined) {
                     continue;
                 }
-                inList.push(procedureInputs[i].direction);
+                var directionObj = {
+                    step: procedureInputs[i].direction,
+                    img: fileInputs[i].file
+                };
+                inList.push(directionObj);
             }
             return inList;
         }
 
         $scope.createRecipe = function () {
             var ingredientsList = getIngredientsList($scope.ingredientsInputs);
-            var procedureList = getProcedureList($scope.procedureInputs);
+            var procedureList = getProcedureList($scope.procedureInputs, $scope.data.procedureFileInputs);
             var newRecipe = new RecipeService();
-            console.log($scope.data.procedureFileInputs);
-            return;
             newRecipe.title = $scope.data.title;
             newRecipe.description = $scope.data.description;
             newRecipe.procedure = {
