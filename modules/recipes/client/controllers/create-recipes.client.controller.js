@@ -10,12 +10,14 @@
     function CreateRecipesController($scope, RecipeService) {
         var vm = this;
 
+        $scope.data = {};
+
+        // will hold the individual steps
         $scope.ingredientsInputs = [{}];
         $scope.procedureInputs = [{}];
 
-        $scope.imageFiles = [];
-
-        $scope.data = {};
+        // will hold images, step wise
+        $scope.data.procedureFileInputs = [];
 
         function getIngredientsList(ingredientsInputs) {
             var inList = [];
@@ -43,6 +45,8 @@
             var ingredientsList = getIngredientsList($scope.ingredientsInputs);
             var procedureList = getProcedureList($scope.procedureInputs);
             var newRecipe = new RecipeService();
+            console.log($scope.data.procedureFileInputs);
+            return;
             newRecipe.title = $scope.data.title;
             newRecipe.description = $scope.data.description;
             newRecipe.procedure = {
@@ -63,9 +67,12 @@
 
         $scope.uploadStepFileHandler = function(event) {
             var fileElement = event.target.files[0];
-            console.log(fileElement);
-            // upload this file and append to procedure inputs object
-            // console.log($scope.procedureInputs);
+            var indexCount = event.target.attributes['index-count'].value;
+            var fileObj = {
+                index: indexCount,
+                file: fileElement
+            };
+            $scope.data.procedureFileInputs.push(fileObj);
         };
     }
 })();
