@@ -5,9 +5,9 @@
         .module('recipes')
         .controller('CreateRecipesController', CreateRecipesController);
 
-    CreateRecipesController.$inject = ['$scope', 'RecipeService'];
+    CreateRecipesController.$inject = ['$scope', 'RecipeService', '$http'];
 
-    function CreateRecipesController($scope, RecipeService) {
+    function CreateRecipesController($scope, RecipeService, $http) {
         var vm = this;
 
         $scope.data = {};
@@ -36,13 +36,31 @@
                 if (procedureInputs[i].direction === undefined) {
                     continue;
                 }
+                var pathToImageOnFS = uploadFileToServer(fileInputs[i].file);
                 var directionObj = {
                     step: procedureInputs[i].direction,
-                    img: fileInputs[i].file
+                    img: pathToImageOnFS
                 };
                 inList.push(directionObj);
             }
             return inList;
+        }
+
+        // TODO make it run with deferred.promise
+        function uploadFileToServer(fileObj) {
+            var fd = new FormData();
+            fd.append('file', fileObj);
+
+            $http.post('/', fd, {
+              transformRequest: angular.identity,
+              headers: {'Content-Type': undefined}
+            }).success(function(){
+                // on success
+                return '';
+            }).error(function(){
+                // on error
+                console.error('Something')
+            });
         }
 
         $scope.createRecipe = function () {
