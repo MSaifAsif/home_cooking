@@ -1,0 +1,25 @@
+{
+    "title": "This is a recipe",
+    "description": "This is its description",
+    "procedure": {
+        "ingredients": ["peanuts", "butter"],
+        "directions": [{
+            "step": "Get a jar",
+            "img": "http://wdy.h-cdn.co/assets/cm/15/09/54ec078030c7b_-_jif-crunchy-peanut-butter-xl.jpg"
+        }, {
+            "step": "Add peanuts",
+            "img": "http://wdy.h-cdn.co/assets/cm/15/09/54ec078030c7b_-_jif-crunchy-peanut-butter-xl.jpg"
+        }, {
+            "step": "Add butter",
+            "img": "http://wdy.h-cdn.co/assets/cm/15/09/54ec078030c7b_-_jif-crunchy-peanut-butter-xl.jpg"
+        }, {
+            "step": "Mix them together",
+            "img": "http://wdy.h-cdn.co/assets/cm/15/09/54ec078030c7b_-_jif-crunchy-peanut-butter-xl.jpg"
+        }, {
+            "step": "voila",
+            "img": "http://wdy.h-cdn.co/assets/cm/15/09/54ec078030c7b_-_jif-crunchy-peanut-butter-xl.jpg"
+        }]
+    },
+    "category": "breakfast",
+    "tags": ["eggs", "poultry"]
+}

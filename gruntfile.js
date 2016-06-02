@@ -223,6 +223,21 @@ module.exports = function (grunt) {
                     return !fs.existsSync('config/env/local.js');
                 }
             }
+        },
+        mongobackup: {
+            options: {
+                host: 'localhost',
+                port: '27017',
+                // right now hard coding this for testing
+                db: 'recipe-test',
+                dump: {
+                    out: './dumps/'
+                },
+                restore: {
+                    path: './dumps/recipe-test',
+                    drop: true
+                }
+            }
         }
     });
 
