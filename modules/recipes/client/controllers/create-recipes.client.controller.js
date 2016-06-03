@@ -51,7 +51,7 @@
             var fd = new FormData();
             fd.append('file', fileObj);
 
-            $http.post('/', fd, {
+            $http.post('/api/v1/utility_endpoint/file/upload', fd, {
               transformRequest: angular.identity,
               headers: {'Content-Type': undefined}
             }).success(function(){
@@ -59,7 +59,7 @@
                 return '';
             }).error(function(){
                 // on error
-                console.error('Something')
+                console.error('Something went wrong');
             });
         }
 
