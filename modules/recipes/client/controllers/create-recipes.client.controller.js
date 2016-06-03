@@ -11,6 +11,7 @@
         var vm = this;
 
         $scope.data = {};
+        $scope.data.nutrition = {};
 
         // will hold the individual steps
         $scope.ingredientsInputs = [{}];
@@ -39,7 +40,7 @@
                 uploadFileToServer(fileInputs[i].file).then(function (data){
                     var directionObj = {
                         step: procedureInputs[i].direction,
-                        img: pathToImageOnFS
+                        img: data.path
                     };
                     inList.push(directionObj);
                 });
@@ -65,14 +66,23 @@
         }
 
         $scope.createRecipe = function () {
+
+            // read form data from scope
             var ingredientsList = getIngredientsList($scope.ingredientsInputs);
             var procedureList = getProcedureList($scope.procedureInputs, $scope.data.procedureFileInputs);
+
             var newRecipe = new RecipeService();
             newRecipe.title = $scope.data.title;
             newRecipe.description = $scope.data.description;
             newRecipe.procedure = {
                 'ingredients': ingredientsList,
                 'directions': procedureList
+            };
+            newRecipe.details = {
+                total_calories: $scope.total_calories,
+                serving_size: $scope.serving_size,
+                cooking_time: $scope.cooking_time,
+                nutrient_value: $scope.data.nutrition
             };
             newRecipe.category = $scope.data.category.categoryType;
             newRecipe.$save();
