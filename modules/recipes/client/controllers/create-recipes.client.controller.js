@@ -49,7 +49,7 @@
         // TODO make it run with deferred.promise
         function uploadFileToServer(fileObj) {
             var fd = new FormData();
-            fd.append('file', fileObj);
+            fd.append('fileObj', fileObj);
 
             $http.post('/api/v1/utility_endpoint/file/upload', fd, {
               transformRequest: angular.identity,

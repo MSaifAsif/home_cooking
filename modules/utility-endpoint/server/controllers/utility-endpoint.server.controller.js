@@ -5,22 +5,20 @@
  */
 var mongoose = require('mongoose'),
     _ = require('lodash'),
-    multiparty = require('multiparty'),
-    util = require('util');
+    multiparty = require('multiparty');
 
 
 exports.singleFileUploadToLocalFS = function (request, response) {
-    var uploadedFile;
-    var form = new multiparty.Form();
-    form.parse(request, function(err, fields, files) {
-        console.log(fields);
-        console.log(files);
-        Object.keys(files).forEach(function(name) {
-            console.log('Uploaded file', name);
-            // set uploadedFile to the contents of the dictionary
-        });
-    });
-    return response.status(200).send({
-        data: uploadedFile
+    var fileUploadFormOptions = {
+        uploadDir: '/tmp/upload_dir'
+    };
+    var fileUploadForm = new multiparty.Form(fileUploadFormOptions);
+    fileUploadForm.parse(request, function(err, fields, files) {
+        if (err) {
+            return response.status(500).send({
+                msg: err
+            });
+        }
+        return response.json(files.fileObj);
     });
 };
