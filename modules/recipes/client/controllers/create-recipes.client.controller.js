@@ -5,9 +5,9 @@
         .module('recipes')
         .controller('CreateRecipesController', CreateRecipesController);
 
-    CreateRecipesController.$inject = ['$scope', 'RecipeService', '$http'];
+    CreateRecipesController.$inject = ['$scope', 'RecipeService', '$http', '$q'];
 
-    function CreateRecipesController($scope, RecipeService, $http) {
+    function CreateRecipesController($scope, RecipeService, $http, $q) {
         var vm = this;
 
         $scope.data = {};
@@ -36,12 +36,13 @@
                 if (procedureInputs[i].direction === undefined) {
                     continue;
                 }
-                var pathToImageOnFS = uploadFileToServer(fileInputs[i].file);
-                var directionObj = {
-                    step: procedureInputs[i].direction,
-                    img: pathToImageOnFS
-                };
-                inList.push(directionObj);
+                uploadFileToServer(fileInputs[i].file).then(function (data){
+                    var directionObj = {
+                        step: procedureInputs[i].direction,
+                        img: pathToImageOnFS
+                    };
+                    inList.push(directionObj);
+                });
             }
             return inList;
         }
@@ -51,16 +52,16 @@
             var fd = new FormData();
             fd.append('fileObj', fileObj);
 
+            var deferred = $q.defer();
             $http.post('/api/v1/utility_endpoint/file/upload', fd, {
               transformRequest: angular.identity,
               headers: {'Content-Type': undefined}
-            }).success(function(){
-                // on success
-                return '';
-            }).error(function(){
-                // on error
-                console.error('Something went wrong');
+            }).then(function successCallback(response) {
+                deferred.resolve(response.data[0].path);
+            }, function errorCallback(response) {
+                console.error(response.msg);
             });
+            return deferred.promise;
         }
 
         $scope.createRecipe = function () {
