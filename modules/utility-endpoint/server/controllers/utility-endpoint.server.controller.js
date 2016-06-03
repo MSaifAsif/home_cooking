@@ -10,17 +10,17 @@ var mongoose = require('mongoose'),
 
 
 exports.singleFileUploadToLocalFS = function (request, response) {
-    console.log('I am here');
-    // console.log(response.body);
+    var uploadedFile;
     var form = new multiparty.Form();
     form.parse(request, function(err, fields, files) {
-      // response.writeHead(200, {'content-type': 'text/plain'});
-      // response.write('received upload:\n\n');
-      // response.end(util.inspect({fields: fields, file: file}));
-      console.log(err);
-      console.log(fields);
-      console.log(files);
-      // file will be uploaded to /tmp by default
+        console.log(fields);
+        console.log(files);
+        Object.keys(files).forEach(function(name) {
+            console.log('Uploaded file', name);
+            // set uploadedFile to the contents of the dictionary
+        });
     });
-    response.json('Done');
+    return response.status(200).send({
+        data: uploadedFile
+    });
 };
