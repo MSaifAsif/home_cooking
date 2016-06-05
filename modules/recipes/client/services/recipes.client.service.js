@@ -8,6 +8,12 @@ angular.module('recipes').factory('RecipeService', ['$resource',
             save: {
                 method: 'POST'
             },
+            update: {
+                method: 'PUT'
+            },
+            patch: {
+                method: 'PATCH'
+            },
             get: {
                 method: 'GET',
                 params: {

@@ -1,3 +1,4 @@
+/*jshint loopfunc: true */
 (function () {
     'use strict';
 
@@ -31,30 +32,41 @@
             return inList;
         }
 
-        function getProcedureList(procedureInputs, fileInputs) {
+        function getProcedureList(procedureInputs, fileInputs, recipeId) {
             var inList = [];
-            for (var i = procedureInputs.length - 1; i >= 0; i--) {
-                if (procedureInputs[i].direction === undefined) {
-                    continue;
-                }
-                uploadFileToServer(fileInputs[i].file).then(function (data){
-                    var directionObj = {
-                        step: procedureInputs[i].direction,
-                        img: data.path
+            procedureInputs.forEach(function(listItem, index){
+                inList.push(uploadFileToServer(fileInputs[index].file, fileInputs[index].index, recipeId).then(function(data){
+                    return {
+                        step: procedureInputs[index].direction,
+                        img: data,
+                        index: index
                     };
-                    inList.push(directionObj);
-                });
-            }
+                    // inList.push(directionObj);
+                }));
+            });
             return inList;
+            // for (var i = procedureInputs.length - 1; i >= 0; i--) {
+            //     if (procedureInputs[i].direction === undefined) {
+            //         continue;
+            //     }
+            //     uploadFileToServer(fileInputs[i].file, fileInputs[i].index, recipeId, function (data) {
+            //         var directionObj = {
+            //             step: procedureInputs[i].direction,
+            //             img: '/dummy/path',
+            //             index: i
+            //         };                    
+            //     inList.push(directionObj);
+            //     });
+            // }
+            // return inList;
         }
 
-        // TODO make it run with deferred.promise
-        function uploadFileToServer(fileObj) {
+        function uploadFileToServer(fileObj, fileIndex, recipeId) {
             var fd = new FormData();
             fd.append('fileObj', fileObj);
-
+            var uploadParams = '?recipeId='+recipeId+'&index='+fileIndex; 
             var deferred = $q.defer();
-            $http.post('/api/v1/utility_endpoint/file/upload', fd, {
+            $http.post('/api/v1/utility_endpoint/file/upload' + uploadParams, fd, {
               transformRequest: angular.identity,
               headers: {'Content-Type': undefined}
             }).then(function successCallback(response) {
@@ -67,25 +79,33 @@
 
         $scope.createRecipe = function () {
 
-            // read form data from scope
-            var ingredientsList = getIngredientsList($scope.ingredientsInputs);
-            var procedureList = getProcedureList($scope.procedureInputs, $scope.data.procedureFileInputs);
-
             var newRecipe = new RecipeService();
+
+            // read form data from scope
             newRecipe.title = $scope.data.title;
             newRecipe.description = $scope.data.description;
-            newRecipe.procedure = {
-                'ingredients': ingredientsList,
-                'directions': procedureList
-            };
             newRecipe.details = {
-                total_calories: $scope.total_calories,
-                serving_size: $scope.serving_size,
-                cooking_time: $scope.cooking_time,
+                total_calories: $scope.data.total_calories,
+                serving_size: $scope.data.serving_size,
+                cooking_time: $scope.data.cooking_time,
                 nutrient_value: $scope.data.nutrition
             };
             newRecipe.category = $scope.data.category.categoryType;
-            newRecipe.$save();
+            newRecipe.$save(function(newRecipeObj) {
+                // we have saved the recipe, now do some updates regarding files
+
+                // function returns number of promises as there are number of files
+                var procedureListPromises = getProcedureList($scope.procedureInputs, $scope.data.procedureFileInputs, newRecipeObj._id);
+                procedureListPromises.forEach(function(aPromise, index){
+                    console.log(aPromise.promise);
+                });
+                var ingredientsList = getIngredientsList($scope.ingredientsInputs);
+                newRecipeObj.procedure = {
+                    'ingredients': ingredientsList,
+                    'directions': procedureList
+                };
+                newRecipeObj.$update();
+            });
         };
 
         $scope.addMoreTextFields = function (elName) {

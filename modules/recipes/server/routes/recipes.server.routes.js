@@ -26,6 +26,7 @@ module.exports = function (app) {
     app.route('/api/v1/recipes').get(recipesController.get);  // get by ID
     app.route('/api/v1/recipes').post(recipesController.create);
     app.route('/api/v1/recipes').delete(recipesController.delete);
+    app.route('/api/v1/recipes').put(recipesController.update);
     app.route('/api/v1/recipes/find').get(recipesController.findByFilters);
     app.route('/api/v1/recipes/count').get(recipesController.countByFilters);
 

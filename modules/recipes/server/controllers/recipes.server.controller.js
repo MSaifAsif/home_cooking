@@ -20,18 +20,21 @@ exports.create = function (req, res) {
         procedure: formBody.procedure,
         media: formBody.media,
         category: formBody.category,
-        tags: formBody.tags
+        tags: formBody.tags,
+        details: formBody.details
     });
 
-    newRecipe.save(function (err) {
+    newRecipe.save(function (err, newlyCreatedRecipeDoc) {
         if (err) {
             return res.status(400).send({
                 api_message: err
             });
         } else {
-            res.status(200).send({
-                api_message: 'New recipe saved succesfully'
-            });
+            // res.status(200).send({
+            //     api_message: 'New recipe saved succesfully',
+            //     data: newlyCreatedRecipeDoc
+            // });
+            res.json(newlyCreatedRecipeDoc);
         }
     });
 };
@@ -78,9 +81,7 @@ exports.getCount = function (req, res) {
  * Update a recipe
  */
 exports.update = function (req, res) {
-    var updatedFieldsJson = req.body.updates;
-    console.log(updatedFieldsJson);
-    Recipes.findByIdAndUpdate(req.body.recipe_id, updatedFieldsJson, function (err, updatedRecipe) {
+    Recipes.findByIdAndUpdate(req.body._id, req.body, {new: true}, function (err, updatedRecipe) {
         if (err) {
             res.send(err);
         } else {

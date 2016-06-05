@@ -30,6 +30,7 @@ var RecipesSchema = new Schema({
         default: {
             'ingredients': [String],
             'directions': [{
+                'index': 0,
                 'step': '',
                 'img': ''
             }]
