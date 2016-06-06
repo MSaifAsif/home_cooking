@@ -55,6 +55,18 @@
             });
         }
 
+        function getTagwordsList(tagwordsTextList) {
+            // need to contruct a comma separated string
+            var arr = [];
+            if (tagwordsTextList === undefined) {
+                return '';
+            }
+            for (var i = tagwordsTextList.length - 1; i >= 0; i--) {
+                arr.push(tagwordsTextList[i].text);
+            }
+            return arr;
+        }
+
         function uploadFileToServer(fileObj, fileIndex, recipeId) {
             var fd = new FormData();
             fd.append('fileObj', fileObj);
@@ -81,7 +93,7 @@
 
             // read form data from scope
             newRecipe.title = $scope.data.title;
-            newRecipe.tags = $scope.data.tagwords;
+            newRecipe.tags = getTagwordsList($scope.data.tagwords);
             newRecipe.description = $scope.data.description;
             newRecipe.details = {
                 total_calories: $scope.data.total_calories,
