@@ -6,9 +6,9 @@
         .module('recipes')
         .controller('CreateRecipesController', CreateRecipesController);
 
-    CreateRecipesController.$inject = ['$scope', 'RecipeService', '$http', '$q', 'Notification'];
+    CreateRecipesController.$inject = ['$scope', 'RecipeService', '$http', '$q', 'Notification', 'TagwordService'];
 
-    function CreateRecipesController($scope, RecipeService, $http, $q, Notification) {
+    function CreateRecipesController($scope, RecipeService, $http, $q, Notification, TagwordService) {
         var vm = this;
 
         $scope.data = {};
@@ -22,6 +22,10 @@
         $scope.data.procedureFileInputs = [];
 
         var fileUploadPromises = [];
+
+        $scope.loadTagwords = function(query) {
+            return TagwordService.query().$promise;
+        };
 
         function getIngredientsList(ingredientsInputs) {
             var inList = [];
@@ -77,6 +81,7 @@
 
             // read form data from scope
             newRecipe.title = $scope.data.title;
+            newRecipe.tags = $scope.data.tagwords;
             newRecipe.description = $scope.data.description;
             newRecipe.details = {
                 total_calories: $scope.data.total_calories,

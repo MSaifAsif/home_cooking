@@ -78,7 +78,8 @@ exports.getCount = function (req, res) {
 };
 
 /**
- * Update a recipe
+ * Update a recipe, this replaces the entire 
+ * recipe document with the new name
  */
 exports.update = function (req, res) {
     Recipes.findByIdAndUpdate(req.body._id, req.body, {new: true}, function (err, updatedRecipe) {
