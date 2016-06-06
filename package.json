@@ -118,6 +118,7 @@
     "should": "^7.0.1",
     "supertest": "^1.0.1",
     "grunt-mongo-backup": "^0.0.2",
-    "multiparty": "^4.1.2"
+    "multiparty": "^4.1.2",
+    "angular-ui-notification": "^0.2.0"
   }
 }

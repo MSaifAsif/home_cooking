@@ -13,7 +13,7 @@ exports.singleFileUploadToLocalFS = function (request, response) {
     var destinationLocation = '/tmp/upload_dir/' + request.query.recipeId;
 
     if (!fs.existsSync(destinationLocation)){
-        console.log('Creating destination', destinationLocation);
+        console.debug('Creating destination', destinationLocation);
         fs.mkdirSync(destinationLocation);
     }
     var fileUploadFormOptions = {
@@ -23,17 +23,13 @@ exports.singleFileUploadToLocalFS = function (request, response) {
     console.log(request.query);
     fileUploadForm.parse(request, function(err, fields, files) {
         Object.keys(files).forEach(function(name) {
-            console.log('got file named ' + name);
-            // console.log(name.originalFilename);
-            // console.log(files.name.originalFilename);
+            console.debug('Saved file name ' + name);
         });
         if (err) {
             return response.status(500).send({
                 msg: err
             });
         }
-        // console.log(files.originalFilename);
-        // fs.rename(destinationLocation+'/'+files.originalFilename);
         return response.json(files.fileObj);
     });
 };

@@ -21,6 +21,8 @@
         // will hold images, step wise
         $scope.data.procedureFileInputs = [];
 
+        var fileUploadPromises = [];
+
         function getIngredientsList(ingredientsInputs) {
             var inList = [];
             for (var i = ingredientsInputs.length - 1; i >= 0; i--) {
@@ -33,32 +35,17 @@
         }
 
         function getProcedureList(procedureInputs, fileInputs, recipeId) {
-            var inList = [];
             procedureInputs.forEach(function(listItem, index){
-                inList.push(uploadFileToServer(fileInputs[index].file, fileInputs[index].index, recipeId).then(function(data){
+                // for each file upload call, save the promise in a list
+                fileUploadPromises.push(uploadFileToServer(fileInputs[index].file, fileInputs[index].index, recipeId).then(function(data){
+                    // keep the result set simple, this will be directly set into database
                     return {
                         step: procedureInputs[index].direction,
                         img: data,
                         index: index
                     };
-                    // inList.push(directionObj);
                 }));
             });
-            return inList;
-            // for (var i = procedureInputs.length - 1; i >= 0; i--) {
-            //     if (procedureInputs[i].direction === undefined) {
-            //         continue;
-            //     }
-            //     uploadFileToServer(fileInputs[i].file, fileInputs[i].index, recipeId, function (data) {
-            //         var directionObj = {
-            //             step: procedureInputs[i].direction,
-            //             img: '/dummy/path',
-            //             index: i
-            //         };                    
-            //     inList.push(directionObj);
-            //     });
-            // }
-            // return inList;
         }
 
         function uploadFileToServer(fileObj, fileIndex, recipeId) {
@@ -93,18 +80,16 @@
             newRecipe.category = $scope.data.category.categoryType;
             newRecipe.$save(function(newRecipeObj) {
                 // we have saved the recipe, now do some updates regarding files
-
-                // function returns number of promises as there are number of files
-                var procedureListPromises = getProcedureList($scope.procedureInputs, $scope.data.procedureFileInputs, newRecipeObj._id);
-                procedureListPromises.forEach(function(aPromise, index){
-                    console.log(aPromise.promise);
-                });
+                getProcedureList($scope.procedureInputs, $scope.data.procedureFileInputs, newRecipeObj._id);
                 var ingredientsList = getIngredientsList($scope.ingredientsInputs);
-                newRecipeObj.procedure = {
-                    'ingredients': ingredientsList,
-                    'directions': procedureList
-                };
-                newRecipeObj.$update();
+                // resolve all promises from the fileUpload list
+                $q.all(fileUploadPromises).then(function(directionResults) {
+                    newRecipeObj.procedure = {
+                        'ingredients': ingredientsList,
+                        'directions': directionResults
+                    };
+                    newRecipeObj.$update();
+                });
             });
         };
 
