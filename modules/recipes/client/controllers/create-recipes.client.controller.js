@@ -6,9 +6,9 @@
         .module('recipes')
         .controller('CreateRecipesController', CreateRecipesController);
 
-    CreateRecipesController.$inject = ['$scope', 'RecipeService', '$http', '$q'];
+    CreateRecipesController.$inject = ['$scope', 'RecipeService', '$http', '$q', 'Notification'];
 
-    function CreateRecipesController($scope, RecipeService, $http, $q) {
+    function CreateRecipesController($scope, RecipeService, $http, $q, Notification) {
         var vm = this;
 
         $scope.data = {};
@@ -36,6 +36,9 @@
 
         function getProcedureList(procedureInputs, fileInputs, recipeId) {
             procedureInputs.forEach(function(listItem, index){
+                if (fileInputs[index] === undefined) {
+                     fileInputs[index] = '/dummy/path';
+                }
                 // for each file upload call, save the promise in a list
                 fileUploadPromises.push(uploadFileToServer(fileInputs[index].file, fileInputs[index].index, recipeId).then(function(data){
                     // keep the result set simple, this will be directly set into database
@@ -57,7 +60,11 @@
               transformRequest: angular.identity,
               headers: {'Content-Type': undefined}
             }).then(function successCallback(response) {
-                deferred.resolve(response.data[0].path);
+                if (response.data[0] !== undefined) {
+                    deferred.resolve(response.data[0].path);
+                } else {
+                    deferred.resolve('/dummy/path');
+                }
             }, function errorCallback(response) {
                 console.error(response.msg);
             });
@@ -89,6 +96,7 @@
                         'directions': directionResults
                     };
                     newRecipeObj.$update();
+                    Notification.success('Recipe created successfully');
                 });
             });
         };
