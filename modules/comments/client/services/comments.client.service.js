@@ -3,11 +3,11 @@
 
   angular
     .module('comments')
-    .factory('commentsService', commentsService);
+    .factory('CommentsService', CommentsService);
 
-  commentsService.$inject = [/*Example: '$state', '$window' */];
+  CommentsService.$inject = [/*Example: '$state', '$window' */];
 
-  function commentsService(/*Example: $state, $window */) {
+  function CommentsService(/*Example: $state, $window */) {
     // Comments service logic
     // ...
 

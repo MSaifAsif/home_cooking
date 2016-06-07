@@ -112,6 +112,7 @@
                         'ingredients': ingredientsList,
                         'directions': directionResults
                     };
+                    newRecipeObj.lastUpdated = Date.now();
                     newRecipeObj.$update();
                     Notification.success('Recipe created successfully');
                 });
