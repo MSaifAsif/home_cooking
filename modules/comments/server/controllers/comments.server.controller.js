@@ -4,8 +4,8 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-	Comments = mongoose.model('Comments'),
-	_ = require('lodash'),
+    Comments = mongoose.model('Comments'),
+    _ = require('lodash'),
     ObjectId = require('mongoose').Types.ObjectId;
 
 /**
@@ -35,15 +35,31 @@ exports.create = function (req, res) {
 /**
  * Show the current 
  */
-exports.get = function (req, res) {
-	Comments.findById(new ObjectId(req.query.recipeId.toString()), function (err, responseComments) {
+exports.getById = function (req, res) {
+    Comments.findById(new ObjectId(req.query.recipeId.toString()), function (err, resDoc) {
         if (err) {
             res.send(err);
         } else {
-            res.send(responseComments);
+            res.send(resDoc);
         }
     });
 };
+
+
+/**
+ * Show the comments by recipeId
+ */
+exports.getByRecipe = function (req, res) {
+    var recipeId = new ObjectId(req.query.recipeId.toString());
+    Comments.find({'recipeId': recipeId}, function (err, resDoc) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(resDoc);
+        }
+    });
+};
+
 
 /**
  * Update a 
