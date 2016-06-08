@@ -1,21 +1,20 @@
-(function() {
-  'use strict';
+(function () {
+    'use strict';
 
-  angular
-    .module('comments')
-    .controller('CommentsController', CommentsController);
+    angular
+        .module('comments')
+        .controller('CommentsController', CommentsController);
 
-  CommentsController.$inject = ['$scope'];
+    CommentsController.$inject = ['$scope'];
 
-  function CommentsController($scope) {
-    var vm = this;
+    function CommentsController($scope) {
+        var vm = this;
 
-    // Comments controller logic
-    // ...
+        // Comments controller logic
+        // ...
 
-    init();
+        init();
 
-    function init() {
+        function init() {}
     }
-  }
 })();

@@ -1,21 +1,21 @@
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('comments')
-    .factory('CommentsService', CommentsService);
+    angular
+        .module('comments')
+        .factory('CommentsService', CommentsService);
 
-  CommentsService.$inject = [/*Example: '$state', '$window' */];
+    CommentsService.$inject = [ /*Example: '$state', '$window' */ ];
 
-  function CommentsService(/*Example: $state, $window */) {
-    // Comments service logic
-    // ...
+    function CommentsService( /*Example: $state, $window */ ) {
+        // Comments service logic
+        // ...
 
-    // Public API
-    return {
-      someMethod: function () {
-        return true;
-      }
-    };
-  }
+        // Public API
+        return {
+            someMethod: function () {
+                return true;
+            }
+        };
+    }
 })();
