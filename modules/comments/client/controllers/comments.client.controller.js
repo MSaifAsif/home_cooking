@@ -21,5 +21,16 @@
                 });
             });
         };
+
+        $scope.addCommentForRecipe = function() {
+            var newComment = new CommentsService();
+            newComment.recipeId = $stateParams.recipeId;
+            newComment.text = $scope.data.commentText;
+            newComment.stars = $scope.data.commentStars;
+            newComment.$save(function(data){
+                // reload the comments section
+                $scope.getCommentsForRecipe();
+            });
+        };
     }
 })();

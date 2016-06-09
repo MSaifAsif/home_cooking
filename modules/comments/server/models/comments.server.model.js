@@ -29,7 +29,11 @@ var CommentsSchema = new Schema({
     stars: {
         type: Number,
         default: 3
-    }
+    },
+    createdDate: {
+        type: Date,
+        default: Date.now()
+    },
 });
 
 mongoose.model('Comments', CommentsSchema);
