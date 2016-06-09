@@ -34,28 +34,22 @@
                         <a href="single-page.html">read more</a>
                     </div> 
                 </div>
-                <div class="row">
-                    <div class="panel panel-default">
-                      <div class="panel-body">
-                        Basic panel example
-                      </div>
-                    </div>
-                    <div class="panel panel-default">
-                      <div class="panel-body">
-                        Basic panel example
-                      </div>
-                    </div>
-                    <div class="panel panel-default">
-                      <div class="panel-body">
-                        Basic panel example
-                      </div>
-                    </div>
-                    <div class="panel panel-default">
-                      <div class="panel-body">
-                        Basic panel example
-                      </div>
+                
+                <!-- comments section -->
+                <div class="row" data-ng-controller="CommentsController" ng-init=getCommentsForRecipe()>
+                   <div class="col-md-12">
+                        <div ng-repeat="cmnt in data.comments track by $index">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    {{cmnt.text}}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+
+
             </div>
         </div>
     </div><!-- end main -->

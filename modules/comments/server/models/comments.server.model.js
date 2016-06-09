@@ -12,7 +12,7 @@ var mongoose = require('mongoose'),
 var CommentsSchema = new Schema({
     // Comments model fields
     recipeId: {
-        type: [Schema.Types.ObjectId]
+        type: Schema.Types.ObjectId
     },
     text: {
         type: String,

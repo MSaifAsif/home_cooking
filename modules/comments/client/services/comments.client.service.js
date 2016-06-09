@@ -5,17 +5,24 @@
         .module('comments')
         .factory('CommentsService', CommentsService);
 
-    CommentsService.$inject = [ /*Example: '$state', '$window' */ ];
+    CommentsService.$inject = [ '$resource' ];
 
-    function CommentsService( /*Example: $state, $window */ ) {
+    function CommentsService( $resource ) {
         // Comments service logic
         // ...
 
         // Public API
-        return {
-            someMethod: function () {
-                return true;
+        return $resource('/api/v1/comments', {}, {
+            save: {
+                method: 'POST'
+            },
+            query: {
+                method: 'GET',
+                isArray: true,
+                params: {
+                    recipeId: '@recipeId'
+                }
             }
-        };
+        });
     }
 })();

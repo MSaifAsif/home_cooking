@@ -5,16 +5,21 @@
         .module('comments')
         .controller('CommentsController', CommentsController);
 
-    CommentsController.$inject = ['$scope'];
+    CommentsController.$inject = ['$scope', 'CommentsService', '$stateParams'];
 
-    function CommentsController($scope) {
+    function CommentsController($scope, CommentsService, $stateParams) {
         var vm = this;
+        $scope.data.comments = []; 
 
-        // Comments controller logic
-        // ...
-
-        init();
-
-        function init() {}
+        $scope.getCommentsForRecipe = function() {
+            var filtersData = {
+                recipeId: $stateParams.recipeId
+            };
+            CommentsService.query(filtersData, function (resComment) {
+                angular.forEach(resComment, function (item) {
+                    $scope.data.comments.push(item);
+                });
+            });
+        };
     }
 })();
