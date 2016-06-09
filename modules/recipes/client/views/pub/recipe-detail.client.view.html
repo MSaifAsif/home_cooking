@@ -41,7 +41,15 @@
                         <div ng-repeat="cmnt in data.comments track by $index">
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    {{cmnt.text}}
+                                    <blockquote>
+                                    <span>
+                                        {{cmnt.text}}
+                                    </span>
+                                    <span class="pull-right">
+                                        <drv-render-star-ratings rating-value={{cmnt.stars}} />
+                                    </span>
+                                        <footer>from {{cmnt.author}}</footer>
+                                    </blockquote>
                                 </div>
                             </div>
                         </div>
