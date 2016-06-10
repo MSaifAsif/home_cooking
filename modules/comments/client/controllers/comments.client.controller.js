@@ -12,6 +12,7 @@
         $scope.data.comments = []; 
 
         $scope.getCommentsForRecipe = function() {
+            $scope.data.comments = [];
             var filtersData = {
                 recipeId: $stateParams.recipeId
             };
@@ -23,12 +24,16 @@
         };
 
         $scope.addCommentForRecipe = function() {
+            console.log('Saving new comment');
             var newComment = new CommentsService();
             newComment.recipeId = $stateParams.recipeId;
             newComment.text = $scope.data.commentText;
+            newComment.author = $scope.data.commentAuthor;
             newComment.stars = $scope.data.commentStars;
             newComment.$save(function(data){
                 // reload the comments section
+                // TODO this is not working
+                $scope.createCommentForm.$setPristine();
                 $scope.getCommentsForRecipe();
             });
         };

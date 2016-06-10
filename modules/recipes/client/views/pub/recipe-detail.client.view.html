@@ -59,14 +59,18 @@
                         </div>
                         <!-- add new comment section -->
                         <div class="row">
-                            <form class="form" role="form" data-ng-submit="addCommentForRecipe">
+                            <form class="form-horizontal" data-ng-submit="addCommentForRecipe()" name="createCommentForm" novalidate>
                                 <div class="form-group">
                                     <label for="comment-text">Comment:</label>
-                                    <input type="text" class="form-control" id="comment-text">
+                                    <input type="text" data-ng-model="data.commentText" class="form-control" id="comment-text" placeholder="Enter your feecback here">
+                                </div>
+                                <div class="form-group">
+                                    <label for="comment-author">Name:</label>
+                                    <input type="text" data-ng-model="data.commentAuthor" class="form-control" id="comment-author" placeholder="Your name">
                                 </div>
                                 <div class="form-group">
                                       <label for="comment-stars">Select Rating (select one):</label>
-                                      <select class="form-control" id="comment-stars">
+                                      <select data-ng-model="data.commentStars" class="form-control" id="comment-stars">
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
@@ -74,7 +78,9 @@
                                         <option>5</option>
                                       </select>
                                     </div>
-                                <input type="submit" class="btn btn-default" />
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-default">
+                                </div>
                             </form>
                         </div>
                     </div>
