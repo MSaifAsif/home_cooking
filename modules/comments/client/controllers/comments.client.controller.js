@@ -5,9 +5,9 @@
         .module('comments')
         .controller('CommentsController', CommentsController);
 
-    CommentsController.$inject = ['$scope', 'CommentsService', '$stateParams'];
+    CommentsController.$inject = ['$scope', 'CommentsService', '$stateParams', 'Notification'];
 
-    function CommentsController($scope, CommentsService, $stateParams) {
+    function CommentsController($scope, CommentsService, $stateParams, Notification) {
         var vm = this;
         $scope.data.comments = []; 
 
@@ -24,17 +24,22 @@
         };
 
         $scope.addCommentForRecipe = function() {
-            console.log('Saving new comment');
             var newComment = new CommentsService();
             newComment.recipeId = $stateParams.recipeId;
             newComment.text = $scope.data.commentText;
-            newComment.author = $scope.data.commentAuthor;
+            if (!!$scope.data.commentAuthor || $scope.data.commentAuthor === '') {
+                newComment.author = 'anonymous';
+            } else {
+                newComment.author = $scope.data.commentAuthor;
+            }
             newComment.stars = $scope.data.commentStars;
+            newComment.isApproved = false;
             newComment.$save(function(data){
                 // reload the comments section
                 // TODO this is not working
                 $scope.createCommentForm.$setPristine();
-                $scope.getCommentsForRecipe();
+                // $scope.getCommentsForRecipe();
+                Notification.info('Comment sent for approval');
             });
         };
     }

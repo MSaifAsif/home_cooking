@@ -20,11 +20,11 @@ var CommentsSchema = new Schema({
     },
     author: {
         type: String,
-        default: ''
+        default: 'anonymous'
     },
     isApproved: {
         type: Boolean,
-        default: true
+        default: false
     },
     stars: {
         type: Number,

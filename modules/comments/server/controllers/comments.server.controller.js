@@ -82,8 +82,17 @@ exports.delete = function (req, res) {
 };
 
 /**
- * List of 
+ * List of all comments for a recipe
  */
-exports.list = function (req, res) {
+exports.getAllCommentsForRecipe = function (req, res) {
+    var recipeIdQuery = {'recipeId': new ObjectId(req.query.recipeId.toString())};
 
+    var r = Comments.find(recipeIdQuery);
+    r.exec(function(err, resDoc){
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(resDoc);
+        }
+    });
 };
