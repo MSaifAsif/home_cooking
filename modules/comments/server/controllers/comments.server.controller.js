@@ -52,8 +52,12 @@ exports.getById = function (req, res) {
  * Show the comments by recipeId
  */
 exports.getByRecipe = function (req, res) {
-    var recipeId = new ObjectId(req.query.recipeId.toString());
-    Comments.find({'recipeId': recipeId}, function (err, resDoc) {
+    var sortQuery = {'stars': -1}; // descending oreder of star rating
+    var limitQuery = 5;  // maximum 5 results
+    var recipeIdQuery = {'recipeId': new ObjectId(req.query.recipeId.toString())};
+
+    var r = Comments.find(recipeIdQuery).sort(sortQuery).limit(limitQuery);
+    r.exec(function(err, resDoc){
         if (err) {
             res.send(err);
         } else {
