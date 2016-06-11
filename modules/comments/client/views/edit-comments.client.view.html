@@ -53,16 +53,18 @@
                     <th>Created date</th>
                     <th>Status</th>
                     <th>Comment Author</th>
-                    <th> - </th>
+                    <th>Activate/Hide</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="rec in data.retrievedComments">
-                <td>{{ rec.text }}</td>
-                <td>{{ rec.createdDate }}</td>
-                <td>{{ rec.isApproved }}</td>
-                <td>{{ rec.author }}</td>
-                <td> <a> Click for more details </a> </td>
+              <tr ng-repeat="cmnt in data.retrievedComments">
+                <td>{{ cmnt.text }}</td>
+                <td>{{ cmnt.createdDate }}</td>
+                <td>{{ cmnt.isApproved }}</td>
+                <td>{{ cmnt.author }}</td>
+                <td><button>Toggle</button></td>
+                <td><span class="glyphicon glyphicon-remove" ng-click="deleteComment(cmnt.id)"></span></td>
               </tr>
           </tbody>
         </table>

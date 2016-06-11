@@ -52,11 +52,11 @@ exports.getById = function (req, res) {
  * Show the comments by recipeId
  */
 exports.getByRecipe = function (req, res) {
-    var sortQuery = {'stars': -1}; // descending oreder of star rating
+    var sortQuery = {'stars': -1}; // descending order of star rating
     var limitQuery = 5;  // maximum 5 results
-    var recipeIdQuery = {'recipeId': new ObjectId(req.query.recipeId.toString())};
+    var recipeIdAndIsApprovedQuery = {'recipeId': new ObjectId(req.query.recipeId.toString()), 'isApproved': true};
 
-    var r = Comments.find(recipeIdQuery).sort(sortQuery).limit(limitQuery);
+    var r = Comments.find(recipeIdAndIsApprovedQuery).sort(sortQuery).limit(limitQuery);
     r.exec(function(err, resDoc){
         if (err) {
             res.send(err);
@@ -78,7 +78,12 @@ exports.update = function (req, res) {
  * Delete an 
  */
 exports.delete = function (req, res) {
-
+    var commentIdQuery = {'_id': req.query.commentId};
+    Comments.find(commentIdQuery, function(err, matchingCmnts){
+        matchingCmnts.forEach(function(aCmnt){
+            aCmnt.remove();
+        });
+    });
 };
 
 /**

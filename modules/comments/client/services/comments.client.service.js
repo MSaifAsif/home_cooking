@@ -22,6 +22,12 @@
                 params: {
                     recipeId: '@recipeId'
                 }
+            },
+            delete: {
+                method: 'DELETE',
+                params: {
+                    commentId: '@commentId'
+                }
             }
         });
     }
