@@ -28,6 +28,12 @@
                 params: {
                     commentId: '@commentId'
                 }
+            },
+            patch: {
+                method: 'PATCH',
+                params: {
+                    commentId: '@commentId'
+                }
             }
         });
     }

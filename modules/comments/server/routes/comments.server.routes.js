@@ -7,5 +7,6 @@ module.exports = function (app) {
     app.route('/api/v1/comments').delete(commentsController.delete);
 
     app.route('/api/v1/comments/find').get(commentsController.getAllCommentsForRecipe);
+    app.route('/api/v1/comments/count').get(commentsController.getAllCommentsCountsForRecipe);
 
 };

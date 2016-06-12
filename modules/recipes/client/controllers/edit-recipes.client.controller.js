@@ -58,12 +58,12 @@
 
             // Now get the results
             RecipeSearchService.findRecipesMatchingFilters.query(filtersData, function(retrievedRecipes) {
-                angular.forEach(retrievedRecipes, function(item) {
+                angular.forEach(retrievedRecipes, function(aRecipe) {
                     var innerObject = {};
-                    innerObject.id = item._id;
-                    innerObject.createdDate = parseDateToHumanReadable(item.createdDate);
-                    innerObject.isActive = Boolean(item.isActive) === true ? 'Active' : 'Not active';
-                    innerObject.description = item.description;
+                    innerObject.id = aRecipe._id;
+                    innerObject.createdDate = parseDateToHumanReadable(aRecipe.createdDate);
+                    innerObject.isActive = Boolean(aRecipe.isActive) === true ? 'Active' : 'Not active';
+                    innerObject.description = aRecipe.description;
                     $scope.data.retrievedRecipes.push(innerObject);
                 });
             });

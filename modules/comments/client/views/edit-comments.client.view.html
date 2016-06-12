@@ -40,35 +40,58 @@
             </fieldset>
         </form>
     </div>
-
-
-
     <div class="col-md-12">
         <div class="row">
-        <span>Total results: {{data.retrievedRecipesCount}}</span>
-        <table class="table table-hover table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>Comment message</th>
-                    <th>Created date</th>
-                    <th>Status</th>
-                    <th>Comment Author</th>
-                    <th>Activate/Hide</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="cmnt in data.retrievedComments">
-                <td>{{ cmnt.text }}</td>
-                <td>{{ cmnt.createdDate }}</td>
-                <td>{{ cmnt.isApproved }}</td>
-                <td>{{ cmnt.author }}</td>
-                <td><button>Toggle</button></td>
-                <td><span class="glyphicon glyphicon-remove" ng-click="deleteComment(cmnt.id)"></span></td>
-              </tr>
-          </tbody>
-        </table>
+            <span>Total results: {{data.retrievedCommentsCount}}</span>
+            <table class="table table-hover table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Comment message</th>
+                        <th>Created date</th>
+                        <th>Rating</th>
+                        <th>Status</th>
+                        <th>Comment Author</th>
+                        <th>Edit/Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="cmnt in data.retrievedComments">
+                    <td>{{ cmnt.text }}</td>
+                    <td>{{ cmnt.createdDate }}</td>
+                    <td>{{ cmnt.rating }}</td>
+                    <td>{{ cmnt.isApproved }}</td>
+                    <td>{{ cmnt.author }}</td>
+                    <td><span class="glyphicon glyphicon-remove" ng-click="deleteComment(cmnt.id)"></span>Delete <span class="glyphicon glyphicon-edit" ng-click="getEditCommentModal(cmnt.id)"></span>Edit</td>
+                  </tr>
+              </tbody>
+            </table>
         </div>
+    </div>
+
+        <!-- Button trigger modal -->
+    <!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+      Launch demo modal
+    </button> -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="commentEditModel" tabindex="-1" role="dialog" aria-labelledby="commentEditModel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="commentEditModel">{{data.editableComment.id}}</h4>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
     </div>
 </section>
 

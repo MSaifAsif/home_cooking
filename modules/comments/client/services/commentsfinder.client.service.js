@@ -22,7 +22,7 @@
                     }
                 }
             }),
-            countRecipesMatchingFilters: $resource('/api/v1/comments/count', {}, {
+            countCommentsMatchingFilters: $resource('/api/v1/comments/count', {}, {
                 get: {
                     method: 'GET',
                     params: {

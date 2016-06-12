@@ -79,10 +79,12 @@ exports.update = function (req, res) {
  */
 exports.delete = function (req, res) {
     var commentIdQuery = {'_id': req.query.commentId};
-    Comments.find(commentIdQuery, function(err, matchingCmnts){
-        matchingCmnts.forEach(function(aCmnt){
-            aCmnt.remove();
-        });
+    Comments.remove(commentIdQuery, function(err, removedCount){
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(removedCount);
+        }
     });
 };
 
@@ -98,6 +100,22 @@ exports.getAllCommentsForRecipe = function (req, res) {
             res.send(err);
         } else {
             res.send(resDoc);
+        }
+    });
+};
+
+exports.getAllCommentsCountsForRecipe = function (req, res) {
+    var recipeIdQuery = {'recipeId': new ObjectId(req.query.recipeId.toString())};
+
+    Comments.count(recipeIdQuery).exec(function (err, result) {
+        if (err) {
+            return res.status(400).send({
+                api_message: err
+            });
+        } else {
+            res.status(200).send({
+                total_comments: result
+            });
         }
     });
 };
