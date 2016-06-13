@@ -29,18 +29,18 @@
         };
 
         $scope.getEditCommentModal = function(commentId){
-            $scope.data.retrievedComments = [];
+            console.log(commentId);
             var params = {
                 commentId: commentId
             };
-            CommentsService.get(params, function(theComment){
-                $scope.data.editableComment.id = theComment._id;
-                $scope.data.editableComment.rating = theComment.stars;
-                $scope.data.editableComment.isApproved = theComment.isApproved;
-                $scope.data.editableComment.text = theComment.text;
-                $scope.data.editableComment.author = theComment.author;
+            CommentsFinderService.getCommentByCommentId.get(params, function(theCommentToEdit){
+                $scope.data.editableComment.id = theCommentToEdit._id;
+                $scope.data.editableComment.rating = theCommentToEdit.stars;
+                $scope.data.editableComment.isApproved = theCommentToEdit.isApproved;
+                $scope.data.editableComment.text = theCommentToEdit.text;
+                $scope.data.editableComment.author = theCommentToEdit.author;
+                $('#commentEditModel').modal();
             });
-            $('#commentEditModel').modal();
         };
 
         $scope.findComments = function(){
@@ -55,14 +55,14 @@
 
 
             CommentsFinderService.findCommentsMatchingFilters.query(filtersData, function(retrievedCmnts){
-                angular.forEach(retrievedCmnts, function(aComments) {
+                angular.forEach(retrievedCmnts, function(aComment) {
                     var innerObject = {};
-                    innerObject.id = aComments._id;
-                    innerObject.rating = aComments.stars;
-                    innerObject.createdDate = parseDateToHumanReadable(aComments.createdDate);
-                    innerObject.isApproved = Boolean(aComments.isApproved) === true ? 'Approved' : 'Not approved';
-                    innerObject.text = aComments.text;
-                    innerObject.author = aComments.author;
+                    innerObject.id = aComment._id;
+                    innerObject.rating = aComment.stars;
+                    innerObject.createdDate = parseDateToHumanReadable(aComment.createdDate);
+                    innerObject.isApproved = Boolean(aComment.isApproved) === true ? 'Approved' : 'Not approved';
+                    innerObject.text = aComment.text;
+                    innerObject.author = aComment.author;
                     $scope.data.retrievedComments.push(innerObject);
                 });
             });

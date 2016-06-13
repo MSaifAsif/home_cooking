@@ -37,8 +37,7 @@ exports.create = function (req, res) {
  * Show the current 
  */
 exports.getById = function (req, res) {
-	console.log(new ObjectId(req.query.recipeId.toString()));
-    Comments.findById(new ObjectId(req.query.recipeId.toString()), function (err, resDoc) {
+    Comments.findById(new ObjectId(req.query.commentId.toString()), function (err, resDoc) {
         if (err) {
             res.send(err);
         } else {

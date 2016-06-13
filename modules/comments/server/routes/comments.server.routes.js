@@ -8,5 +8,6 @@ module.exports = function (app) {
 
     app.route('/api/v1/comments/find').get(commentsController.getAllCommentsForRecipe);
     app.route('/api/v1/comments/count').get(commentsController.getAllCommentsCountsForRecipe);
+    app.route('/api/v1/comments/getComment').get(commentsController.getById);
 
 };

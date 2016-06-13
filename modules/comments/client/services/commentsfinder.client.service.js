@@ -29,6 +29,14 @@
                         recipeId: '@recipeId'
                     }
                 }
+            }),
+            getCommentByCommentId: $resource('/api/v1/comments/getComment', {}, {
+                get: {
+                    method: 'GET',
+                    params: {
+                        commentId: '@commentId'
+                    }
+                } 
             })
         };
     }
