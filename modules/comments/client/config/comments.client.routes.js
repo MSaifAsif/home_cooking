@@ -18,7 +18,7 @@
                 controllerAs: 'vm'
             })
             .state('edit-comments', {
-                url: '/edit-comments',
+                url: '/comments/edit',
                 templateUrl: 'modules/comments/client/views/edit-comments.client.view.html',
                 controller: 'EditCommentsController',
                 controllerAs: 'vm'

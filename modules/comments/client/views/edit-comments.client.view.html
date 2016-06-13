@@ -84,7 +84,15 @@
             <h4 class="modal-title" id="commentEditModel">{{data.editableComment.id}}</h4>
           </div>
           <div class="modal-body">
-            ...
+              <div>
+                Comment body: <drv-in-place-editable-comments value="data.editableComment.text"></drv-in-place-editable-comments>
+              </div>
+              <div>
+                Comment Author: <drv-in-place-editable-comments value="data.editableComment.author"></drv-in-place-editable-comments>
+              </div>
+              <div>
+                Comment Active: <drv-in-place-editable-comments value="data.editableComment.isApproved"></drv-in-place-editable-comments>
+              </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
