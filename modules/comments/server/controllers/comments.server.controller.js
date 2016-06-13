@@ -70,7 +70,13 @@ exports.getByRecipe = function (req, res) {
  * Update a 
  */
 exports.update = function (req, res) {
-
+    Comments.findByIdAndUpdate(new ObjectId(req.query.commentId.toString()), req.body, {new: false}, function(err, updatedCmnt){
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(updatedCmnt);
+        }
+    });
 };
 
 /**

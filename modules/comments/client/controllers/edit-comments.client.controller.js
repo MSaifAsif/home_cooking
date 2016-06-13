@@ -29,7 +29,6 @@
         };
 
         $scope.getEditCommentModal = function(commentId){
-            console.log(commentId);
             var params = {
                 commentId: commentId
             };
@@ -40,6 +39,15 @@
                 $scope.data.editableComment.text = theCommentToEdit.text;
                 $scope.data.editableComment.author = theCommentToEdit.author;
                 $('#commentEditModel').modal();
+            });
+        };
+
+        $scope.saveEditedComment = function() {
+            var params = {
+                commentId: commentId
+            };
+            CommentsService.$patch(params, function(savedCmnt){
+                console.log(savedCmnt);
             });
         };
 

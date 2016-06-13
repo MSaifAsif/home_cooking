@@ -12,7 +12,7 @@
     return {
         restrict: 'E',
         scope: { value: '=' },
-        template: '<span ng-click="edit()" ng-bind="value"></span><input ng-model="value"></input>',
+        template: '<span ng-click="edit()" ng-bind="value"></span><input class="form-control" ng-model="value"></input>',
         link: function ( $scope, element, attrs ) {
             // Let's get a reference to the input element, as we'll want to reference it.
             var inputElement = angular.element( element.children()[1] );
