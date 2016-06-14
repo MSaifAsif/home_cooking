@@ -5,9 +5,9 @@
         .module('comments')
         .controller('EditCommentsController', EditCommentsController);
 
-    EditCommentsController.$inject = ['$scope', 'CommentsFinderService', 'CommentsService'];
+    EditCommentsController.$inject = ['$scope', 'CommentsFinderService', 'CommentsService', 'UrlUtilsService'];
 
-    function EditCommentsController($scope, CommentsFinderService, CommentsService) {
+    function EditCommentsController($scope, CommentsFinderService, CommentsService, UrlUtilsService) {
         var vm = this;
         $scope.data = [];
         $scope.data.editableComment = {};
@@ -52,9 +52,7 @@
                     isApproved: $scope.data.editableComment.isApproved
                 }
             };
-            // TODO encode uri here
-            encodeURI('http://www.google.com')
-
+            params = UrlUtilsService.encodeString(token);
             CommentsService.patch(params, function(savedCmnt){
                 console.log(savedCmnt);
                 // close the modal here
