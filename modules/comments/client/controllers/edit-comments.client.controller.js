@@ -52,6 +52,8 @@
                     isApproved: $scope.data.editableComment.isApproved
                 }
             };
+            // TODO encode uri here
+            encodeURI('http://www.google.com')
 
             CommentsService.patch(params, function(savedCmnt){
                 console.log(savedCmnt);
