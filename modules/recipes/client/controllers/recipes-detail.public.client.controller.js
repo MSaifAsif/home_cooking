@@ -16,6 +16,7 @@
             RecipeService.get({
                 recipeId: $stateParams.recipeId
             }).$promise.then(function(recipeResponse){
+                console.log(recipeResponse);
                 $scope.data.recipeBean = recipeResponse;
             });
         };

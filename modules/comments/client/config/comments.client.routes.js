@@ -13,7 +13,7 @@
         $stateProvider
             .state('comments', {
                 url: '/comments',
-                templateUrl: 'modules/comments/client/views/comments.client.view.html',
+                templateUrl: 'modules/comments/client/views/comments.public.client.view.html',
                 controller: 'CommentsController',
                 controllerAs: 'vm'
             })

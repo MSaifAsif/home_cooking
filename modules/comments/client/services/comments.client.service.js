@@ -32,7 +32,8 @@
             patch: {
                 method: 'PATCH',
                 params: {
-                    commentId: '@commentId'
+                    commentId: '@commentId',
+                    updatedFieldsJson: '@updatedFieldsJson'
                 }
             }
         });

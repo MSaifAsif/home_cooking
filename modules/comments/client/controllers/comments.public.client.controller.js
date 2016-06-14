@@ -9,7 +9,7 @@
 
     function CommentsController($scope, CommentsService, $stateParams, Notification) {
         var vm = this;
-        $scope.data.comments = []; 
+        $scope.data.comments = [];
 
         $scope.getCommentsForRecipe = function() {
             $scope.data.comments = [];

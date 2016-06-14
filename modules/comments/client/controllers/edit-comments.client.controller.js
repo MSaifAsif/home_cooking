@@ -42,16 +42,26 @@
             });
         };
 
-        $scope.saveEditedComment = function() {
+        $scope.saveEditedComment = function(commentId) {
+            console.log(commentId);
             var params = {
-                commentId: commentId
+                commentId: commentId,
+                updatedFieldsJson: {
+                    text: $scope.data.editableComment.text,
+                    author: $scope.data.editableComment.author,
+                    isApproved: $scope.data.editableComment.isApproved
+                }
             };
-            CommentsService.$patch(params, function(savedCmnt){
+
+            CommentsService.patch(params, function(savedCmnt){
                 console.log(savedCmnt);
+                // close the modal here
+                $scope.findComments();
             });
         };
 
         $scope.findComments = function(){
+            $scope.data.retrievedComments = [];
             var filtersData = {
                 recipeId: $scope.data.recipeId
             };
