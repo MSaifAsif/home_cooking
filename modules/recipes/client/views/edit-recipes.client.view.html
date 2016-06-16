@@ -69,7 +69,7 @@
                     <th>Summary</th>
                     <th>Created date</th>
                     <th>Status</th>
-                    <th></th>
+                    <th>Edit/Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -77,11 +77,74 @@
                 <td>{{ rec.description }}</td>
                 <td>{{ rec.createdDate }}</td>
                 <td>{{ rec.isActive }}</td>
-                <td> <a> Click for more details </a> </td>
+                <td><span class="glyphicon glyphicon-remove" ng-click="deleteRecipe(rec.id)"></span>Delete <span class="glyphicon glyphicon-edit" ng-click="getEditRecipeModal(rec.id)"></span>Edit</td>
               </tr>
           </tbody>
         </table>
         </div>
+    </div>
+    <div class="modal fade" id="recipeEditModel" tabindex="-1" role="dialog" aria-labelledby="recipeEditModel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="recipeEditModel">{{data.editableRecipe.id}}</h4>
+          </div>
+          <div class="modal-body">
+              <div>
+                Recipe Title: <drv-in-place-editable-recipes value="data.editableRecipe.title"></drv-in-place-editable-recipes>
+              </div>
+              <div>
+                Recipe description: <drv-in-place-editable-recipes value="data.editableRecipe.description"></drv-in-place-editable-recipes>
+              </div>
+              <div>
+                Recipe is Active: <drv-in-place-editable-recipes value="data.editableRecipe.isActive"></drv-in-place-editable-recipes>
+              </div>
+            <div>
+                Ingredients
+                <table class="table table-hover table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Index no.</th>
+                            <th>Ingredient</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="ing in data.editableRecipe.procedure.ingredients track by $index">
+                        <td>{{ $index }}</td>
+                        <td><drv-in-place-editable-recipes value="ing"></drv-in-place-editable-recipes></td>
+                      </tr>
+                  </tbody>
+                </table>
+            </div>
+            <div>
+                Directions
+                <table class="table table-hover table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Index no.</th>
+                            <th>Instructions</th>
+                            <th>Media file path</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="proc in data.editableRecipe.procedure.directions track by $index">
+                        <td>{{proc.index}}</td>
+                        <td><drv-in-place-editable-recipes value="proc.step"></drv-in-place-editable-recipes></td>
+                        <td><drv-in-place-editable-recipes value="proc.img"></drv-in-place-editable-recipes></td>
+                      </tr>
+                  </tbody>
+                </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" ng-click="saveEditedRecipe(data.editableRecipe.id)" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
     </div>
 </section>
 

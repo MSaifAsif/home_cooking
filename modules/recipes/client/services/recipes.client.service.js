@@ -12,7 +12,11 @@ angular.module('recipes').factory('RecipeService', ['$resource',
                 method: 'PUT'
             },
             patch: {
-                method: 'PATCH'
+                method: 'PATCH',
+                params: {
+                    recipeId: '@recipeId',
+                    updatedFieldsJson: '@updatedFieldsJson'
+                }
             },
             get: {
                 method: 'GET',

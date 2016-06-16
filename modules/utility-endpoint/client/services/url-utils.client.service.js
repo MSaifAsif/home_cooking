@@ -13,12 +13,6 @@
 
         // Public API
         return {
-            encodeString: function (token) {
-                return encodeURI(token);
-            },
-            decodeString: function (token) {
-                return decodeURI(token);
-            }
         };
     }
 })();

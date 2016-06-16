@@ -5,9 +5,9 @@
         .module('comments')
         .controller('EditCommentsController', EditCommentsController);
 
-    EditCommentsController.$inject = ['$scope', 'CommentsFinderService', 'CommentsService', 'UrlUtilsService'];
+    EditCommentsController.$inject = ['$scope', 'CommentsFinderService', 'CommentsService'];
 
-    function EditCommentsController($scope, CommentsFinderService, CommentsService, UrlUtilsService) {
+    function EditCommentsController($scope, CommentsFinderService, CommentsService) {
         var vm = this;
         $scope.data = [];
         $scope.data.editableComment = {};
@@ -43,7 +43,6 @@
         };
 
         $scope.saveEditedComment = function(commentId) {
-            console.log(commentId);
             var params = {
                 commentId: commentId,
                 updatedFieldsJson: {
@@ -52,10 +51,7 @@
                     isApproved: $scope.data.editableComment.isApproved
                 }
             };
-            params = UrlUtilsService.encodeString(token);
             CommentsService.patch(params, function(savedCmnt){
-                console.log(savedCmnt);
-                // close the modal here
                 $scope.findComments();
             });
         };

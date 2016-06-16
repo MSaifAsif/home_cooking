@@ -81,7 +81,7 @@ exports.getCount = function (req, res) {
  * Update a recipe, this replaces the entire 
  * recipe document with the new name
  */
-exports.update = function (req, res) {
+exports.replace = function (req, res) {
     Recipes.findByIdAndUpdate(req.body._id, req.body, {new: true}, function (err, updatedRecipe) {
         if (err) {
             res.send(err);
@@ -90,6 +90,40 @@ exports.update = function (req, res) {
         }
     });
 };
+
+
+/**
+ * Update a Recipe by its ID
+ */
+exports.update = function (req, res) {
+    Recipes.findOne({ _id: new ObjectId(req.query.recipeId.toString())}, function (err, recipeToUpdate){
+        // first get the recipe
+        if (err) {
+            return res.status(400).send({
+                api_message: err
+            });
+        } else {
+            // now update the keys individually
+            var updatedFieldsJson = req.body.updatedFieldsJson;
+            for(var key in updatedFieldsJson){
+                recipeToUpdate[key] = updatedFieldsJson[key];
+            }
+            // now save the document
+            recipeToUpdate.save(function (err, updatedRecipe) {
+                if (err) {
+                    return res.status(400).send({
+                        api_message: err
+                    });
+                } else {
+                    // return the updated recipe document
+                    res.json(updatedRecipe);
+                }
+            });
+        }
+    });
+
+};
+
 
 /**
  * Soft deletes a recipe

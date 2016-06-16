@@ -5,11 +5,12 @@
         .module('recipes')
         .controller('EditRecipesController', EditRecipesController);
 
-    EditRecipesController.$inject = ['$scope', 'RecipeSearchService', 'TagwordService'];
+    EditRecipesController.$inject = ['$scope', 'RecipeSearchService', 'TagwordService', 'RecipeService'];
 
-    function EditRecipesController($scope, RecipeSearchService, TagwordService) {
+    function EditRecipesController($scope, RecipeSearchService, TagwordService, RecipeService) {
         var vm = this;
         $scope.data = {};
+        $scope.data.editableRecipe = {};
 
         function parseDateToHumanReadable(dateObj) {
             var date =  new Date(dateObj);
@@ -27,6 +28,34 @@
             }
             return arr.join(',');
         }
+
+        $scope.getEditRecipeModal = function(recipeId){
+           RecipeService.get({
+                recipeId: recipeId
+            }).$promise.then(function(theRecipeToEdit){
+                $scope.data.editableRecipe.id = theRecipeToEdit._id;
+                $scope.data.editableRecipe.description = theRecipeToEdit.description;
+                $scope.data.editableRecipe.isActive = theRecipeToEdit.isActive;
+                $scope.data.editableRecipe.title = theRecipeToEdit.title;
+                $scope.data.editableRecipe.procedure = theRecipeToEdit.procedure;
+                $('#recipeEditModel').modal();
+            });
+        };
+
+        $scope.saveEditedRecipe = function(recipeId) {
+            var params = {
+                recipeId: recipeId,
+                updatedFieldsJson: {
+                    description: $scope.data.editableRecipe.description,
+                    isActive: $scope.data.editableRecipe.isActive,
+                    title: $scope.data.editableRecipe.title,
+                    procedure: $scope.data.editableRecipe.procedure
+                }
+            };
+            RecipeService.patch(params, function(){
+                $scope.findRecipes();
+            });
+        };
 
         $scope.loadTagwords = function(query) {
             return TagwordService.query().$promise;
