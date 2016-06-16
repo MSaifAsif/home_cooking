@@ -93,17 +93,17 @@
             <h4 class="modal-title" id="recipeEditModel">{{data.editableRecipe.id}}</h4>
           </div>
           <div class="modal-body">
-              <div>
+              <div class="para">
                 Recipe Title: <drv-in-place-editable-recipes value="data.editableRecipe.title"></drv-in-place-editable-recipes>
               </div>
-              <div>
+              <div class="para">
                 Recipe description: <drv-in-place-editable-recipes value="data.editableRecipe.description"></drv-in-place-editable-recipes>
               </div>
-              <div>
+              <div class="para">
                 Recipe is Active: <drv-in-place-editable-recipes value="data.editableRecipe.isActive"></drv-in-place-editable-recipes>
               </div>
             <div>
-                Ingredients
+                <span class="h4">Ingredients</span>
                 <table class="table table-hover table-striped table-bordered">
                     <thead>
                         <tr>
@@ -120,7 +120,7 @@
                 </table>
             </div>
             <div>
-                Directions
+                <span class="h4">Directions</span>
                 <table class="table table-hover table-striped table-bordered">
                     <thead>
                         <tr>

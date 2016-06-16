@@ -49,7 +49,8 @@
                     description: $scope.data.editableRecipe.description,
                     isActive: $scope.data.editableRecipe.isActive,
                     title: $scope.data.editableRecipe.title,
-                    procedure: $scope.data.editableRecipe.procedure
+                    procedure: $scope.data.editableRecipe.procedure,
+                    lastUpdated: new Date()
                 }
             };
             RecipeService.patch(params, function(){
