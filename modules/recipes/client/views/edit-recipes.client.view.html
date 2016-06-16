@@ -69,7 +69,7 @@
                     <th>Summary</th>
                     <th>Created date</th>
                     <th>Status</th>
-                    <th>Edit/Delete</th>
+                    <th>Edit / Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -77,7 +77,14 @@
                 <td>{{ rec.description }}</td>
                 <td>{{ rec.createdDate }}</td>
                 <td>{{ rec.isActive }}</td>
-                <td><span class="glyphicon glyphicon-remove" ng-click="deleteRecipe(rec.id)"></span>Delete <span class="glyphicon glyphicon-edit" ng-click="getEditRecipeModal(rec.id)"></span>Edit</td>
+                <td>
+                    <a class="para" ng-click="deleteRecipe(rec.id)">
+                        <span class="glyphicon glyphicon-remove"></span>Delete 
+                    </a>
+                    <a class="para" ng-click="getEditRecipeModal(rec.id)">
+                        <span class="glyphicon glyphicon-edit"></span>Edit
+                    </a>
+                </td>
               </tr>
           </tbody>
         </table>

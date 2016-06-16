@@ -132,7 +132,7 @@ exports.delete = function (req, res) {
     var markDeleted = {
         isActive: false
     };
-    Recipes.findByIdAndUpdate(req.body.recipe_id, markDeleted, function (err, updatedRecipe) {
+    Recipes.findByIdAndUpdate(new ObjectId(req.query.recipeId.toString()), markDeleted, function (err, updatedRecipe) {
         if (err) {
             res.send(err);
         } else {

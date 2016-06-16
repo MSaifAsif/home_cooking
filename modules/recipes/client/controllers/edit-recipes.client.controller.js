@@ -42,6 +42,15 @@
             });
         };
 
+        $scope.deleteRecipe = function(recipeId){
+            $scope.data.retrievedComments = [];
+            var params = {
+                recipeId: recipeId
+            };
+            RecipeService.delete(params, function(res){
+                $scope.findRecipes();
+            });
+        };
         $scope.saveEditedRecipe = function(recipeId) {
             var params = {
                 recipeId: recipeId,
