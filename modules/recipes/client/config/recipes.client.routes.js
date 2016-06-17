@@ -32,6 +32,12 @@
                 templateUrl: 'modules/recipes/client/views/pub/recipe-detail.client.view.html',
                 controller: 'RecipesDetailController',
                 controllerAs: 'vm'
+            })
+            .state('recipe-search-page', {
+                url: '/pub/recipes/finder',
+                templateUrl: 'modules/recipes/client/views/pub/recipe-search.client.view.html',
+                controller: 'RecipesSearchController',
+                controllerAs: 'vm'
             });
     }
 })();

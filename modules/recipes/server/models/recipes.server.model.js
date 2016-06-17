@@ -36,6 +36,10 @@ var RecipesSchema = new Schema({
             }]
         }
     },
+    mainImage: {
+        type: String,
+        default: null
+    },
     createdDate: {
         type: Date,
         default: Date.now()

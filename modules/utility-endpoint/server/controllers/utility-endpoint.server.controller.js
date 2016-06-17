@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
 
 
 exports.singleFileUploadToLocalFS = function (request, response) {
-    var destinationLocation = '/tmp/upload_dir/' + request.query.recipeId;
+    var destinationLocation = request.query.recipeId;
 
     if (!fs.existsSync(destinationLocation)){
         fs.mkdirSync(destinationLocation);

@@ -10,7 +10,7 @@
     function drvRecipeDisplaySteps($parse, $compile) {
         var evenTemplate =   '<div class="media-left">' +
                                 '<a href="#">' +
-                                  '<img class="media-object" src="{{directionImage}}" alt="aaa" height="200">' +
+                                  '<img class="media-object" src="/static/images/recipe_images/{{directionImage}}" alt="aaa" height="200">' +
                                 '</a>' +
                               '</div>' +
                               '<div class="media-body media-middle">' +
@@ -22,7 +22,7 @@
                               '</div>' +
                               '<div class="media-right">' +
                                 '<a href="#">' +
-                                  '<img class="media-object" src="{{directionImage}}" alt="aaa" height="200">' +
+                                  '<img class="media-object" src="/static/images/recipe_images/{{directionImage}}" alt="aaa" height="200">' +
                                 '</a>' +
                               '</div>';
 

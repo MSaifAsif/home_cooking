@@ -285,8 +285,8 @@ exports.findByIngredients = function (req, res) {
             });
 
             // now sort in order of match percentage
-            resultArray.sort(function(a, b) {
-                return parseFloat(a.matchPercentage) - parseFloat(b.matchPercentage);
+            resultArray.sort(function(recipeA, recipeB) {
+                return parseFloat(recipeA.matchPercentage) - parseFloat(recipeB.matchPercentage);
             });
             res.json(resultArray);
         }

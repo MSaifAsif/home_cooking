@@ -159,6 +159,7 @@ module.exports.initModulesClientRoutes = function (app) {
     app.use('/', express.static(path.resolve('./public')));
 
     app.use('/public/recipe_images', express.static(path.resolve('./public/recipe_images')));
+    app.use('/static/images/recipe_images', express.static('/tmp/upload_dir'));
 
     // Globbing static routing
     config.folders.client.forEach(function (staticPath) {
