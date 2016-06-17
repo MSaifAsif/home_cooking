@@ -31,6 +31,7 @@ module.exports = function (app) {
 
     app.route('/api/v1/recipes/find').get(recipesController.findByFilters);
     app.route('/api/v1/recipes/count').get(recipesController.countByFilters);
+    app.route('/api/v1/recipes/findFromIngredients').get(recipesController.findByIngredients);
 
 
 

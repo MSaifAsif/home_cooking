@@ -256,6 +256,43 @@ exports.get = function (req, res) {
     });
 };
 
+/**
+ * Find recipes matching a list of ingredients
+ */
+exports.findByIngredients = function (req, res) {
+    var ingredientsList = req.query.ingredients.toString().split(',');
+    Recipes.find({ 'procedure.ingredients': { '$in' : ingredientsList} }, function (err, matchingRecipes) {
+        if (err) {
+            return res.status(400).send({
+                api_message: err
+            });
+        } else {
+            var resultArray = [];
+            // need to decide percentage wise
+            matchingRecipes.forEach(function(aRecipe) {
+                var innerRecipeObject = {};
+                var recipesIngredients = aRecipe.procedure.ingredients;
+
+                // filter the list to get matching ingredients only
+                ingredientsList.filter(function(anIng) {
+                    return recipesIngredients.indexOf(anIng) !== -1;
+                });
+                innerRecipeObject.matchingIngredients = ingredientsList;
+                // calculate percentage of match
+                innerRecipeObject.matchPercentage = (ingredientsList.length / recipesIngredients.length * 100);
+                innerRecipeObject.recipe = aRecipe;
+                resultArray.push(innerRecipeObject);
+            });
+
+            // now sort in order of match percentage
+            resultArray.sort(function(a, b) {
+                return parseFloat(a.matchPercentage) - parseFloat(b.matchPercentage);
+            });
+            res.json(resultArray);
+        }
+    });
+};
+
 
 /**
  * OR filter query

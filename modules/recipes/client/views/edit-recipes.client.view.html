@@ -60,34 +60,37 @@
 
 
 
-    <div class="col-md-12">
-        <div class="row">
-        <span>Total results: {{data.retrievedRecipesCount}}</span>
-        <table class="table table-hover table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>Summary</th>
-                    <th>Created date</th>
-                    <th>Status</th>
-                    <th>Edit / Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="rec in data.retrievedRecipes">
-                <td>{{ rec.description }}</td>
-                <td>{{ rec.createdDate }}</td>
-                <td>{{ rec.isActive }}</td>
-                <td>
-                    <a class="para" ng-click="deleteRecipe(rec.id)">
-                        <span class="glyphicon glyphicon-remove"></span>Delete 
-                    </a>
-                    <a class="para" ng-click="getEditRecipeModal(rec.id)">
-                        <span class="glyphicon glyphicon-edit"></span>Edit
-                    </a>
-                </td>
-              </tr>
-          </tbody>
-        </table>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-2">
+                <span>Total results: {{data.retrievedRecipesCount}}</span>
+                <input ng-model="data.recipeSearchToken" class="form-control" placeholder="Search filter text"></label>
+            </div>
+            <table class="table table-hover table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Summary</th>
+                        <th>Created date</th>
+                        <th>Status</th>
+                        <th>Edit / Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="rec in data.retrievedRecipes | filter:data.recipeSearchToken">
+                    <td>{{ rec.description }}</td>
+                    <td>{{ rec.createdDate }}</td>
+                    <td>{{ rec.isActive }}</td>
+                    <td>
+                        <a class="para" ng-click="deleteRecipe(rec.id)">
+                            <span class="glyphicon glyphicon-remove"></span>Delete 
+                        </a>
+                        <a class="para" ng-click="getEditRecipeModal(rec.id)">
+                            <span class="glyphicon glyphicon-edit"></span>Edit
+                        </a>
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
         </div>
     </div>
     <div class="modal fade" id="recipeEditModel" tabindex="-1" role="dialog" aria-labelledby="recipeEditModel" aria-hidden="true">

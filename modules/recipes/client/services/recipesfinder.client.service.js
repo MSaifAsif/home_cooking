@@ -26,6 +26,15 @@ angular.module('recipes').factory('RecipeSearchService', ['$resource',
                         tagwords: '@tagwords'
                     }
                 }
+            }),
+            findRecipesMatchingIngredients: $resource('', {}, {
+                query: {
+                    method: 'GET',
+                    isArray: true,
+                    params: {
+                        ingredients: '@ingredients'
+                    }
+                }
             })
         };
     }
