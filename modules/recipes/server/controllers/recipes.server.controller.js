@@ -301,20 +301,23 @@ exports.find_any = function (req, res) {
     var query = {};
     query.$or = [];
     var filters = req.query;
-    query.$or.push(filters);
 
     // we may have multiple filters in our request
     // in that case build the query based 
     // on the filters
+    Object.keys(filters).forEach(function(fltr, i) {
+        var innerObj = {};
+        innerObj[fltr] = filters[fltr];
+        query.$or.push(innerObj);
+    });
+
     Recipes.find(query).exec(function (err, recipes) {
         if (err) {
             return res.status(400).send({
                 api_message: err
             });
         } else {
-            res.status(200).send({
-                data: recipes
-            });
+            res.json(recipes);
         }
     });
 };
