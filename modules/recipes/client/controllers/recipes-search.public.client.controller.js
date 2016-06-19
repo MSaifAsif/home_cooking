@@ -10,14 +10,13 @@
     function RecipesSearchController($scope, RecipeSearchService, CategoryService) {
         var vm = this;
         $scope.data = {};
-        $scope.data.topRecipes = [];
-        $scope.data.navigableCategories = [];
-        $scope.data.recipesForCategory = [];
 
         function loadTopRecipes() {
+            $scope.data.topRecipes = [];
         }
 
         function loadCategories() {
+            $scope.data.navigableCategories = [];
             CategoryService.query(function(categories){
                 angular.forEach(categories, function (cat) {
                     $scope.data.navigableCategories.push(cat.categoryName);
@@ -26,6 +25,7 @@
         }
 
         $scope.getRecipesForCategory = function(categoryName) {
+            $scope.data.recipesForCategory = [];
             var filters = {
                 category: categoryName
             };
@@ -34,7 +34,7 @@
                     var innerRecipeObject = {};
                     innerRecipeObject.id = aRecipe._id;
                     innerRecipeObject.title = aRecipe.title;
-                    innerRecipeObject.mainImage = aRecipe.mainImage;
+                    innerRecipeObject.mainImage = 'test/img01.jpg'; //aRecipe.mainImage;
                     innerRecipeObject.description = aRecipe.description;
                     innerRecipeObject.likes = aRecipe.likes;
                     $scope.data.recipesForCategory.push(innerRecipeObject);
