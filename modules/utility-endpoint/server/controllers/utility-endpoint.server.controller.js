@@ -10,7 +10,8 @@ var mongoose = require('mongoose'),
 
 
 exports.singleFileUploadToLocalFS = function (request, response) {
-    var destinationLocation = request.query.recipeId;
+    // destination location will be actual FS location
+    var destinationLocation = '/tmp/upload_dir' + request.query.recipeId;
 
     if (!fs.existsSync(destinationLocation)){
         fs.mkdirSync(destinationLocation);
@@ -19,10 +20,9 @@ exports.singleFileUploadToLocalFS = function (request, response) {
         uploadDir: destinationLocation,
     };
     var fileUploadForm = new multiparty.Form(fileUploadFormOptions);
-    console.log(request.query);
     fileUploadForm.parse(request, function(err, fields, files) {
         Object.keys(files).forEach(function(name) {
-            console.info('Saved file name ' + name);
+            // console.info('Saved file name ' + name);
         });
         if (err) {
             return response.status(500).send({

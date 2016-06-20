@@ -7,8 +7,9 @@
         </h2>
          <div class="grids_of_4 row">
                 <div ng-repeat="catRec in data.recipesForCategory" class="col-md-3 images_1_of_4">
-                    <div class="fancyDemo">
-                        <a rel="group" title="" href="images/pic1.jpg"><img src="/static/images/recipe_images/{{catRec.mainImage}}" alt="" class="img-responsive"/><span class="label label-primary">Featured</span></a>
+                    <div class="fancyDemo" style="position: relative;">
+                        <span class="label label-danger"  style="position: absolute;">Featured</span></a>
+                        <a rel="group" title="" href="images/pic1.jpg"><img src="/static/images/recipe_images/{{catRec.mainImage}}" alt="" class="img-responsive"/>
                     </div>
                      <h3><a href="single-page.html">{{catRec.title}}</a><span class="badge">{{catRec.likes}}</span></h3>
                      <p class="para">{{catRec.description}}</p>

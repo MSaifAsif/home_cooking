@@ -34,7 +34,7 @@
                     var innerRecipeObject = {};
                     innerRecipeObject.id = aRecipe._id;
                     innerRecipeObject.title = aRecipe.title;
-                    innerRecipeObject.mainImage = 'test/img01.jpg'; //aRecipe.mainImage;
+                    innerRecipeObject.mainImage = aRecipe.mainImage;
                     innerRecipeObject.description = aRecipe.description;
                     innerRecipeObject.likes = aRecipe.likes;
                     $scope.data.recipesForCategory.push(innerRecipeObject);

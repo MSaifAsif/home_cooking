@@ -63,7 +63,6 @@ exports.getCount = function (req, res) {
         filtersAdded++;
     }
 
-    console.log('Filtered added: ' + filtersAdded);
     Recipes.count(filters).exec(function (err, recipesCount) {
         if (err) {
             return res.status(400).send({
@@ -145,7 +144,6 @@ exports.delete = function (req, res) {
  * List of 
  */
 exports.list = function (req, res) {
-    console.log('Fetching all recipes');
     Recipes.find().exec(function (err, recipes) {
         if (err) {
             return res.status(400).send({
@@ -212,7 +210,6 @@ exports.countByFilters = function (req, res) {
                 api_message: err
             });
         } else {
-            console.log('Total results found:' + result);
             res.status(200).send({
                 total_recipes: result
             });
