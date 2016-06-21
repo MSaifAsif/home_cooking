@@ -1,6 +1,14 @@
 TODO
-- calculate rough estimate of calories and stuff
+- calculate rough estimate of calories and stuff based on ingredients
+- add tooltips
 - maintain profiles with facebook
+- user management
+	- add profile picture, update name password etc
+	- ranking based on likes on his/her recipes or contribution to the site
+	- add and edit his/her recipes, they will be sent for approvals first (if low ranking user)
+
+- add user's photo to recipes (to show what others who have cooked the recipe, what it looked like)
+
 
 DONE
 - Find recipes based on ingredients, like e.g I have chicken and eggs, get me all recipes that use these ingredients
