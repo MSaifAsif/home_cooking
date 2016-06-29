@@ -1,0 +1,31 @@
+/* CSS for the honey comb on home page */
+
+.hex {
+    float: left;
+    margin-left: 3px;
+    margin-bottom: -26px;
+}
+.hex .top {
+    width: 0;
+    border-bottom: 30px solid #333;
+    border-left: 52px solid transparent;
+    border-right: 52px solid transparent;
+}
+.hex .middle {
+    width: 104px;
+    height: 60px;
+    /*background: #6C6;*/
+    background-image: url("https://pixabay.com/static/uploads/photo/2015/11/02/18/32/water-1018808_960_720.jpg");
+}
+.hex .bottom {
+    width: 0;
+    border-top: 30px solid #333;
+    border-left: 52px solid transparent;
+    border-right: 52px solid transparent;
+}
+.hex-row {
+    clear: left;
+}
+.hex-row.even {
+    margin-left: 53px;
+}
