@@ -6,7 +6,7 @@ angular.module('recipes').factory('RecipeSearchService', ['$resource',
 
         // Public API
         return {
-            findRecipesMatchingFilters: $resource('/api/v1/recipes/find', {}, {
+            findRecipesMatchingFilters: $resource('/api/v1/recipes/search/find', {}, {
                 query: {
                     method: 'GET',
                     isArray: true,
@@ -17,7 +17,7 @@ angular.module('recipes').factory('RecipeSearchService', ['$resource',
                     }
                 }
             }),
-            countRecipesMatchingFilters: $resource('/api/v1/recipes/count', {}, {
+            countRecipesMatchingFilters: $resource('/api/v1/recipes/search/count', {}, {
                 get: {
                     method: 'GET',
                     params: {
@@ -28,13 +28,20 @@ angular.module('recipes').factory('RecipeSearchService', ['$resource',
                 }
             }),
             // this is a find_any query, any param can be passed in
-            findRecipesMatchingIngredients: $resource('/api/v1/recipes/find_any', {}, {
+            findRecipesMatchingIngredients: $resource('/api/v1/recipes/search/find_from_ingredients', {}, {
                 query: {
                     method: 'GET',
                     isArray: true,
                     params: {
                         ingredients: '@ingredients'
                     }
+                }
+            }),
+            // get the top featured recipes for home page
+            getTopFeaturedRecipes: $resource('/api/v1/recipes/search/get_featured', {}, {
+                query: {
+                    method: 'GET',
+                    isArray: true
                 }
             })
         };

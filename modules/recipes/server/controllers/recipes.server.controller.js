@@ -290,6 +290,11 @@ exports.findByIngredients = function (req, res) {
     });
 };
 
+exports.getTopFeaturedRecipes = function (req, res) {
+    Recipes.find({ 'tags': { '$in' : 'featured'} }, function(err, response){
+
+    });
+};
 
 /**
  * OR filter query
