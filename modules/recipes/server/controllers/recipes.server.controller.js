@@ -291,8 +291,14 @@ exports.findByIngredients = function (req, res) {
 };
 
 exports.getTopFeaturedRecipes = function (req, res) {
-    Recipes.find({ 'tags': { '$in' : 'featured'} }, function(err, response){
-
+    Recipes.find({ 'tags': 'featured'}, function(err, featuredRecipes){
+        if (err) {
+            return res.status(400).send({
+                api_message: err
+            });
+        } else {
+            res.json(featuredRecipes);
+        }
     });
 };
 

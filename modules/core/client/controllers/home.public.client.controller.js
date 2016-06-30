@@ -23,7 +23,7 @@
                     innerRecipeObject.mainImage = aRecipe.mainImage;
                     innerRecipeObject.description = aRecipe.description;
                     innerRecipeObject.likes = aRecipe.likes;
-                    $scope.data.featRecipes.push(innerRecipeObject);
+                    $scope.data.featuredRecipes.push(innerRecipeObject);
                 });
             });
         };
