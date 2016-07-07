@@ -11,6 +11,8 @@
         var vm = this;
         // This provides Authentication context.
         $scope.authentication = Authentication;
+
+        // scope level vars
         $scope.data = {};
         $scope.data.featuredRecipes = [];
 

@@ -27,7 +27,7 @@ angular.module('recipes').factory('RecipeSearchService', ['$resource',
                     }
                 }
             }),
-            // this is a find_any query, any param can be passed in
+            // 'Get by ingredients' api
             findRecipesMatchingIngredients: $resource('/api/v1/recipes/search/find_from_ingredients', {}, {
                 query: {
                     method: 'GET',
