@@ -15,8 +15,10 @@
         // scope level vars
         $scope.data = {};
         $scope.data.featuredRecipes = [];
+        $scope.data.showLoadingSpinner = false;
 
         $scope.getFeaturedRecipes = function() {
+            $scope.data.showLoadingSpinner = true;
             RecipeSearchService.getTopFeaturedRecipes.query(function(featRecipes){
                 angular.forEach(featRecipes, function (aRecipe) {
                     var innerRecipeObject = {};

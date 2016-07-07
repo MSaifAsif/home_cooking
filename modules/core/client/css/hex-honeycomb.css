@@ -16,6 +16,11 @@
     display: block;
     clear: both;
 }
+
+.hex-text-color {
+    color: white;
+}
+
 .hex {
     position: relative;
     list-style-type: none;

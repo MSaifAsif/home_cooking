@@ -1,3 +1,4 @@
+<div class="loading-spinner" ng-show="data.showLoadingSpinner"></div>
 <div class="col-md-12">
     <div ng-controller="HomeController">
         <div class="well" style="padding-bottom: 40px">
@@ -6,8 +7,8 @@
                     <li class="hex" ng-repeat="rec in data.featuredRecipes">
                         <a class="hexIn" href="#">
                             <img src="https://farm9.staticflickr.com/8461/8048823381_0fbc2d8efb.jpg" alt="" />
-                            <h1>rec.title</h1>
-                            <p>rec.description</p>
+                            <h1 class="hex-text-color">{{rec.title}}</h1>
+                            <p class="hex-text-color">{{rec.description}}</p>
                         </a>
                     </li>
                 </ul>
