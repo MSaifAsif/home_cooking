@@ -302,6 +302,18 @@ exports.getTopFeaturedRecipes = function (req, res) {
     });
 };
 
+exports.findByCategory = function (req, res) {
+    Recipes.find({ 'category': req.query.category}, function(err, featuredRecipes){
+        if (err) {
+            return res.status(400).send({
+                api_message: err
+            });
+        } else {
+            res.json(featuredRecipes);
+        }
+    });    
+};
+
 /**
  * OR filter query
  */

@@ -13,12 +13,16 @@ module.exports = function (app) {
     app.route('/api/v1/recipes').put(recipesController.replace);
     app.route('/api/v1/recipes').patch(recipesController.update);
 
+    // generic search api
     app.route('/api/v1/recipes/search/find').get(recipesController.findByFilters);
     app.route('/api/v1/recipes/search/count').get(recipesController.countByFilters);
-    app.route('/api/v1/recipes/search/find_from_ingredients').get(recipesController.findByIngredients);
-    app.route('/api/v1/recipes/search/get_featured').get(recipesController.getTopFeaturedRecipes);
 
-    // filter queries
+    // caetgorized search api
+    app.route('/api/v1/recipes/search/find_from_ingredients').get(recipesController.findByIngredients);
+    app.route('/api/v1/recipes/search/find_from_category').get(recipesController.findByCategory);
+    app.route('/api/v1/recipes/search/find_top_featured').get(recipesController.getTopFeaturedRecipes);
+
+    // generic filter queries
     app.route('/api/v1/recipes/search/find_any').get(recipesController.find_any);
     app.route('/api/v1/recipes/search/find_only').get(recipesController.find_only);
 

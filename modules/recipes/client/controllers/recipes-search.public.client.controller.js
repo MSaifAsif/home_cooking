@@ -29,7 +29,7 @@
             var filters = {
                 category: categoryName
             };
-            RecipeSearchService.findRecipesMatchingIngredients.query(filters, function(matchingRecipes){
+            RecipeSearchService.findRecipesMatchingCategory.query(filters, function(matchingRecipes){
                 angular.forEach(matchingRecipes, function (aRecipe) {
                     var innerRecipeObject = {};
                     innerRecipeObject.id = aRecipe._id;

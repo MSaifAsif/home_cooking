@@ -38,10 +38,19 @@ angular.module('recipes').factory('RecipeSearchService', ['$resource',
                 }
             }),
             // get the top featured recipes for home page
-            getTopFeaturedRecipes: $resource('/api/v1/recipes/search/get_featured', {}, {
+            getTopFeaturedRecipes: $resource('/api/v1/recipes/search/find_top_featured', {}, {
                 query: {
                     method: 'GET',
                     isArray: true
+                }
+            }),
+            findRecipesMatchingCategory: $resource('/api/v1/recipes/search/find_from_category', {}, {
+                query: {
+                    method: 'GET',
+                    isArray: true,
+                    params: {
+                        category: '@categoryType'
+                    }
                 }
             })
         };
