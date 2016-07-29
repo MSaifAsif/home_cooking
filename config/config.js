@@ -157,6 +157,12 @@ var initGlobalConfigFiles = function (config, assets) {
     // Setting Globbed img files
     config.files.client.img = getGlobbedPaths(assets.client.lib.img, 'public/').concat(getGlobbedPaths(assets.client.img, ['public/']));
 
+    // Setting Globbed font files
+    config.files.client.img = getGlobbedPaths(assets.client.lib.fonts, 'public/').concat(getGlobbedPaths(assets.client.fonts, ['public/']));
+
+    // // Setting Globbed js_lib files
+    // config.files.client.img = getGlobbedPaths(assets.client.lib.js_lib, 'public/').concat(getGlobbedPaths(assets.client.js_lib, ['public/']));
+
     // Setting Globbed test files
     config.files.client.tests = getGlobbedPaths(assets.client.tests);
 };

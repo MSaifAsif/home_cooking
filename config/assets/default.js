@@ -30,6 +30,9 @@ module.exports = {
         css: [
             'modules/*/client/css/*.css'
         ],
+        fonts: [
+            'modules/*/client/fonts/*'
+        ],
         img: [
             'modules/*/client/img/**/*.png',
             'modules/*/client/images/**/*.png'
@@ -45,6 +48,9 @@ module.exports = {
             'modules/core/client/app/init.js',
             'modules/*/client/*.js',
             'modules/*/client/**/*.js'
+        ],
+        js_lib: [
+            'modules/*/client/js_lib/*.js'
         ],
         views: ['modules/*/client/views/**/*.html'],
         templates: ['build/templates.js']
