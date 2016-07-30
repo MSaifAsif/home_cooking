@@ -8,11 +8,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
      font-family: 'open_sansregular';
       src:url('../fonts/OpenSans-Regular-webfont.ttf') format('truetype');
 }
-body {
+/*body {
 	font-family: 'open_sansregular';
 	background:#ffffff;
 	font-size: 100%;
-}
+}*/
 /* start header */
 .header_bg{
 	background: #323232;
