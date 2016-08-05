@@ -1,147 +1,283 @@
-
-<section data-ng-controller="RecipesDetailController" data-ng-init="loadRecipeDetails()" >
-    <!-- <div class="page-header">
-        <h1>Recipe Details</h1>
-    </div> -->
-    <div class="blog" ><!-- start main -->
-        <div class="container">
-            <div class="main row">
-                <h2 class="style">{{data.recipeBean.title}}</h2>
-                <div class="details row">
-                    <div class="col-md-8">
-                        <img src="http://cdn.macrumors.com/article-new/2013/09/green-iphone5c.jpg?retina" alt="" class="img-responsive"/>
-                    </div>
-                    <div class="col-md-4">
-                        <ol class="list-group">
-                            <li ng-repeat="ingredient in data.recipeBean.procedure.ingredients" class="list-group-item">{{ingredient}}<span class="badge">14</span></li>
-                        </ol>
-                        <p class="para">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
-                        <!-- <p class="para">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form alteration in some form, by injected humour. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.  </p> -->
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="row">
-                   <div class="col-md-12">
-                        <div ng-repeat="direction in data.recipeBean.procedure.directions track by $index" class="media">
-                          <div class="media">
-                            <drv-recipe-display-steps recipe-number="{{$index}}" recipe-direction="{{direction.step}}" direction-image={{direction.img}} />
-                          </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <p class="para">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure.</p>
-                    <div class="read_more">
-                        <a href="single-page.html">read more</a>
-                    </div> 
-                </div>
-                
-                <!-- comments section -->
-                <div class="row" data-ng-controller="CommentsController" ng-init="getCommentsForRecipe()" >
-                   <div class="col-md-12">
-                        <div class="row">
-                            <span>Comments and feedbacks:</span>
-                            <div ng-repeat="cmnt in data.comments track by $index">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <blockquote>
-                                        <span>
-                                            {{cmnt.text}}
-                                        </span>
-                                        <span class="pull-right">
-                                            <drv-render-star-ratings rating-value={{cmnt.stars}} />
-                                        </span>
-                                            <footer>from {{cmnt.author}}</footer>
-                                        </blockquote>
+    <main class="main" role="main">
+        <!--wrap-->
+        <div class="wrap clearfix">
+            <!--breadcrumbs-->
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="index.html" title="Home">Home</a></li>
+                    <li><a href="#" title="Recipes">Recipes</a></li>
+                    <li><a href="recipes.html" title="Cocktails">Deserts</a></li>
+                    <li>Recipe</li>
+                </ul>
+            </nav>
+            <!--//breadcrumbs-->
+            
+            <!--row-->
+            <div class="row">
+                <header class="s-title">
+                    <h1>A luxurious black &amp; white chocolate cupcake</h1>
+                    <p><a href="#"><img src="images/cupcakes.jpg" alt="" width="1200" height="450" /></a></p>
+                </header>
+                <!--content-->
+                <section class="content three-fourth">
+                    <!--recipe-->
+                        <div class="recipe">
+                            <div class="row">
+                                <!--two-third-->
+                                <article class="full-width">
+                                    
+                                    <div class="intro"><p><strong>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas</strong></p> <p>Molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p><hr />
+                                    <div class="instructions"><ol>
+                                            <li>Heat oven to 160C/140C fan/gas 3 and line a 12-hole muffin tin with cases. Gently melt the butter, chocolate, sugar and 100ml hot water together in a large saucepan, stirring occasionally, then set aside to cool a little while you weigh the other ingredients.</li>
+                                            <li>Stir the eggs and vanilla into the chocolate mixture. Put the flour into a large mixing bowl, then stir in the chocolate mixture until smooth. Spoon into cases until just over three-quarters full (you may have a little mixture leftover), then set aside for 5 mins before putting on a low shelf in the oven and baking for 20-22 mins. Leave to cool.</li>
+                                            <li>For the icing, melt the chocolate in a heatproof bowl over a pan of barely simmering water. Once melted, turn off the heat, stir in the double cream and sift in the icing sugar. When spreadable, top each cake with some and decorate with your favourite sprinkles and sweets.</li>
+                                        </ol></div><hr />
+                                        <div><article class="one-half">
+                                    <dl class="basic">
+                                        <dt>Preparation time</dt>
+                                        <dd>15 mins</dd>
+                                        <dt>Cooking time</dt>
+                                        <dd>30 mins</dd>
+                                        <dt>Difficulty</dt>
+                                        <dd>easy</dd>
+                                        <dt>Serves</dt>
+                                        <dd>4 people</dd>
+                                    </dl>
+                                    
+                                    <dl class="user">
+                                        <dt>Category</dt>
+                                        <dd>Deserts</dd>
+                                        <dt>Posted by</dt>
+                                        <dd>Jennifer W.</dd>
+                                    </dl></article>
+                                    <article class="one-half">
+                                    <dl class="ingredients">
+                                        <dt>300g</dt>
+                                        <dd>Self-raising flour</dd>
+                                        <dt>200g</dt>
+                                        <dd>Butter</dd>
+                                        <dt>200g</dt>
+                                        <dd>Plain chocolate</dd>
+                                        <dt>2</dt>
+                                        <dd>Eggs</dd>
+                                        <dt>1 tbsp</dt>
+                                        <dd>Vanilla extract</dd>
+                                        <dt>200 g</dt>
+                                        <dd>Brown sugar</dd>
+                                        <dt>100 ml</dt>
+                                        <dd>Double cream</dd>
+                                        <dt>handful</dt>
+                                        <dd>Sprinkles</dd>
+                                    </dl>
+                                </article></div>
                                     </div>
-                                </div>
+                                    <div >
+                                        
+                                    </div>
+                                </article>
+                                <!--//two-third-->
+                                
+                                <!--one-third-->
+                                
+                                <!--//one-third-->
                             </div>
                         </div>
-                        <!-- add new comment section -->
-                        <div class="row">
-                            <form class="form" name="createCommentForm" role="form" data-ng-submit="addCommentForRecipe()">
-                                <div class="form-group">
-                                    <label for="comment-text">Comment:</label>
-                                    <textarea type="text" data-ng-model="data.commentText" class="form-control" id="comment-text"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="comment-text">Author:</label>
-                                    <input type="text" data-ng-model="data.commentAuthor" class="form-control" id="comment-text" />
-                                </div>
-                                <div class="form-group">
-                                      <label for="comment-stars">Select Rating (select one):</label>
-                                      <select class="form-control" data-ng-model="data.commentStars" id="comment-stars">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                      </select>
-                                    </div>
-                                <input type="submit" class="btn btn-default" />
-                            </form>
+                        <!--//recipe-->
+                            
+                        <!--comments-->
+                        <div class="comments" id="comments">
+                            <h2>5 comments </h2>
+                            <ol class="comment-list">
+                                <!--comment-->
+                                <li class="comment depth-1">
+                                    <div class="avatar"><a href="my_profile.html"><img src="images/avatar1.jpg" alt="" /></a></div>
+                                    <div class="comment-box">
+                                        <div class="comment-author meta"> 
+                                            <strong>Kimberly C.</strong> said 1 month ago <a href="#" class="comment-reply-link"> Reply</a>
+                                        </div>
+                                        <div class="comment-text">
+                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
+                                        </div>
+                                    </div> 
+                                </li>
+                                <!--//comment-->
+                                
+                                <!--comment-->
+                                <li class="comment depth-1">
+                                    <div class="avatar"><a href="my_profile.html"><img src="images/avatar2.jpg" alt="" /></a></div>
+                                    <div class="comment-box">
+                                        <div class="comment-author meta"> 
+                                            <strong>Alex J.</strong> said 1 month ago <a href="#" class="comment-reply-link"> Reply</a>
+                                        </div>
+                                        <div class="comment-text">
+                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
+                                        </div>
+                                    </div> 
+                                </li>
+                                <!--//comment-->
+                                
+                                <!--comment-->
+                                <li class="comment depth-2">
+                                    <div class="avatar"><a href="my_profile.html"><img src="images/avatar1.jpg" alt="" /></a></div>
+                                    <div class="comment-box">
+                                        <div class="comment-author meta"> 
+                                            <strong>Kimberly C.</strong> said 1 month ago <a href="#" class="comment-reply-link"> Reply</a>
+                                        </div>
+                                        <div class="comment-text">
+                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
+                                        </div>
+                                    </div> 
+                                </li>
+                                <!--//comment-->
+                                
+                                <!--comment-->
+                                <li class="comment depth-3">
+                                    <div class="avatar"><a href="my_profile.html"><img src="images/avatar2.jpg" alt="" /></a></div>
+                                    <div class="comment-box">
+                                        <div class="comment-author meta"> 
+                                            <strong>Alex J.</strong> said 1 month ago <a href="#" class="comment-reply-link"> Reply</a>
+                                        </div>
+                                        <div class="comment-text">
+                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
+                                        </div>
+                                    </div> 
+                                </li>
+                                <!--//comment-->
+                                
+                                <!--comment-->
+                                <li class="comment depth-1">
+                                    <div class="avatar"><a href="my_profile.html"><img src="images/avatar3.jpg" alt="" /></a></div>
+                                    <div class="comment-box">
+                                        <div class="comment-author meta"> 
+                                            <strong>Denise M.</strong> said 1 month ago <a href="#" class="comment-reply-link"> Reply</a>
+                                        </div>
+                                        <div class="comment-text">
+                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
+                                        </div>
+                                    </div> 
+                                </li>
+                                <!--//comment-->
+                            </ol>
                         </div>
-                    </div>
-                </div>
-
-
-
-            </div>
-        </div>
-    </div><!-- end main -->
-    <div class="footer_bg" id="contact"><!-- start footer -->
-    <div class="container">
-        <div class="row footer">
-            <div class="col-md-8 contact_left">
-                <h3>get in touch</h3>
-                <p>In order to get in touch use the contact form below:</h4>
-                <form method="post" action="contact-post.html">
-                    <input type="text" value="Name (Required)" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}">
-                    <input type="text" value="Email (Required)" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}">
-                    <input type="text" value="Subject" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Subject';}">
-                    <textarea onfocus="if(this.value == 'Your Message here....') this.value='';" onblur="if(this.value == '') this.value='Your Message here....;" >Your Message here....</textarea>
-                    <span class="pull-right"><input type="submit" value="submit us"></span>
-                </form>
-            </div>
-            <div class="col-md-4  contact_right">
-                <p><span>Lorem Ipsum is simply dummy text: </span> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
-                <ul class="list-unstyled address">
-                    <li><i class="fa fa-map-marker"></i><span>500 Lorem Ipsum Dolor Sit,</span></li>
-                    <li><i class="fa fa-phone"></i><span>(00) 222 666 444</span></li>
-                    <li><i class="fa fa-envelope"></i><a href="mailto:info@mycompany.com">info(at)mycompany.com</a></li>
-                </ul>
-            </div>      
-        </div>
-    </div>
-    </div>
-    <div class="footer1_bg"><!-- start footer1 -->
-        <div class="container">
-            <div class="row  footer">
-                <div class="copy text-center">
-                    <p class="link"><span>&#169; All rights reserved | Template by&nbsp;<a href="http://w3layouts.com/"> W3Layouts</a></span></p>
-                    <!-- <a href="#home" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"> </span></a> -->
-                </div>
-            </div>
-            <!-- <script type="text/javascript">
-                    $(function() {
-                      $('a[href*=#]:not([href=#])').click(function() {
-                        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+                        <!--//comments-->
+                        
+                        <!--respond-->
+                        <div class="comment-respond" id="respond">
+                            <h2>Leave a reply</h2>
+                            <div class="container">
+                                <p><strong>Note:</strong> Comments on the web site reflect the views of their authors, and not necessarily the views of the I-BoostUp internet portal. Requested to refrain from insults, swearing and vulgar expression. We reserve the right to delete any comment without notice explanations.</p>
+                                <p>Your email address will not be published. Required fields are signed with <span class="req">*</span></p>
+                                <form>
+                                    <div class="f-row">
+                                        <div class="third">
+                                            <input type="text" placeholder="Your name" />
+                                            <span class="req">*</span>
+                                        </div>
+                                        
+                                        <div class="third">
+                                            <input type="email" placeholder="Your email" />
+                                            <span class="req">*</span>
+                                        </div>
+                                        
+                                        <div class="third">
+                                            <input type="text" placeholder="Your website" />
+                                        </div>
+                                    
+                                    </div>
+                                    <div class="f-row">
+                                        <textarea></textarea>
+                                    </div>
+                                    
+                                    <div class="f-row">
+                                        <div class="third bwrap">
+                                            <input type="submit" value="Submit comment" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bottom">
+                                        <div class="f-row checkbox">
+                                            <input type="checkbox" id="ch1" />
+                                            <label for="ch1">Notify me of replies to my comment via e-mail</label>
+                                        </div>
+                                        <div class="f-row checkbox">
+                                            <input type="checkbox" id="ch2" />
+                                            <label for="ch2">Notify me of new articles by email.</label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!--//respond-->
+                </section>
+                <!--//content-->
                 
-                          var target = $(this.hash);
-                          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-                          if (target.length) {
-                            $('html,body').animate({
-                              scrollTop: target.offset().top
-                            }, 1000);
-                            return false;
-                          }
-                        }
-                      });
-                    });
-            </script> -->
-            <!---- start-smoth-scrolling---->       
+                <!--right sidebar-->
+                <aside class="sidebar one-fourth">
+                    <div class="widget nutrition">
+                        <h3>Nutrition facts <span>(per serving)</span></h3>
+                        <table>
+                            <tr>
+                                <td>Calories </td>
+                                <td>505</td>
+                            </tr>
+                            <tr>
+                                <td>Protein</td>
+                                <td>59g</td>
+                            </tr>
+                            <tr>
+                                <td>Carbs</td>
+                                <td>59g</td>
+                            </tr>
+                            <tr>
+                                <td>Fat</td>
+                                <td>29g</td>
+                            </tr>
+                            <tr>
+                                <td>Saturates</td>
+                                <td>17g</td>
+                            </tr>
+                            <tr>
+                                <td>Fibre</td>
+                                <td>2g</td>
+                            </tr>
+                            <tr>
+                                <td>Sugar</td>
+                                <td>44g</td>
+                            </tr>
+                            <tr>
+                                <td>Salt</td>
+                                <td>0.51g</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="widget share">
+                        <ul class="boxed">
+                            <li class="light"><a href="#" title="Facebook"><i class="fa fa-facebook"></i> <span>Share on Facebook</span></a></li>
+                            <li class="medium"><a href="#" title="Twitter"><i class="fa fa-twitter"></i> <span>Share on Twitter</span></a></li>
+                            <li class="dark"><a href="#" title="Favourites"><i class="fa fa-heart"></i> <span>Add to Favourites</span></a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="widget members">
+                        <h3>Members who liked this recipe</h3>
+                        <ul class="boxed">
+                            <li><div class="avatar"><a href="my_profile.html"><img src="images/avatar1.jpg" alt="" /><span>Kimberly C.</span></a></div></li>
+                            <li><div class="avatar"><a href="my_profile.html"><img src="images/avatar2.jpg" alt="" /><span>Alex J.</span></a></div></li>
+                            <li><div class="avatar"><a href="my_profile.html"><img src="images/avatar3.jpg" alt="" /><span>Denise M.</span></a></div></li>
+                            <li><div class="avatar"><a href="my_profile.html"><img src="images/avatar9.jpg" alt="" /><span>Jason H.</span></a></div></li>
+                            <li><div class="avatar"><a href="my_profile.html"><img src="images/avatar8.jpg" alt="" /><span>Jennifer W.</span></a></div></li>
+                            <li><div class="avatar"><a href="my_profile.html"><img src="images/avatar4.jpg" alt="" /><span>Anabelle Q.</span></a></div></li>
+                            <li><div class="avatar"><a href="my_profile.html"><img src="images/avatar7.jpg" alt="" /><span>Thomas M.</span></a></div></li>
+                            <li><div class="avatar"><a href="my_profile.html"><img src="images/avatar5.jpg" alt="" /><span>Michelle S.</span></a></div></li>
+                            <li><div class="avatar"><a href="my_profile.html"><img src="images/avatar6.jpg" alt="" /><span>Bryan A.</span></a></div></li>
+                        </ul>
+                    </div>
+                </aside>
+                <!--//right sidebar-->
+            </div>
+            <!--//row-->
         </div>
-    </div>
-</section>
-</body>
-</html>
+        <!--//wrap-->
+    </main>
+    <!--//main-->
