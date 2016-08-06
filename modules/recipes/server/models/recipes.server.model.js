@@ -19,42 +19,8 @@ var RecipesSchema = new Schema({
     // Recipes model fields
     title: {
         type: String,
-        validate: [validateTitle, 'Title should not exceed 15 characters']
-    },
-    description: {
-        type: String,
-        default: null
-    },
-    procedure: {
-        type: Schema.Types.Mixed,
-        default: {
-            'ingredients': [String],
-            'directions': [{
-                'index': 0,
-                'step': '',
-                'img': ''
-            }]
-        }
-    },
-    mainImage: {
-        type: String,
-        default: null
-    },
-    createdDate: {
-        type: Date,
-        default: Date.now()
-    },
-    lastUpdated: {
-        type: Date,
-        default: Date.now()
-    },
-    isActive: {
-        type: Boolean,
-        default: true
-    },
-    likes: {
-        type: Number,
-        default: 0
+        validate: [validateTitle, 'Title should not exceed 15 characters'],
+        required: true
     },
     category: {
         type: String,
@@ -69,23 +35,71 @@ var RecipesSchema = new Schema({
         ],
         required: true
     },
-    details: {
-        type: Schema.Types.Mixed,
-        default: {
-            total_calories: 0,
-            serving_size: 0,
-            cooking_time: 0,
-            nutrient_value: {
-                'fats': 0,
-                'carbs': 0,
-                'protein': 0,
-                'cholestrol': 0,
-                'sodium': 0
-            }
-        }
+    createdDate: {
+        type: Date,
+        default: Date.now(),
+        required: true
+    },
+    lastUpdated: {
+        type: Date,
+        default: Date.now(),
+        required: true
     },
     tags: {
-        type: [String]
+        type: [String],
+        default: 'default'
+    },
+    monitor: {
+        type: Schema.Types.Mixed,
+        default: {
+            'hearts': 0,
+            'isFeatured': false,
+            'isApproved': false,
+            'author': 'default-user@homecooking.com',
+            'views': 0
+        },
+        required: true
+    },
+    details: {
+        type: Schema.Types.Mixed,
+        required: true,
+        default: {
+            'description': {
+                'short': 'this is a short description',
+                'long': 'this is a long description'
+            },
+            'ingredients': {
+                'ing': '1gm'
+            },
+            'directions': [
+                'step1',
+                'step2'
+            ],
+            'media': {
+                'mainImage': '...',
+                'mainClip': '...'
+            },
+            'nutrition_value': {
+                'calories' : 0,
+                'protein' : 0,
+                'carbs' : 0,
+                'fat' : 0,
+                'saturates' : 0,
+                'fibre' : 0,
+                'sugar' : 0,
+                'salt' : 0
+            },
+            'tips': [
+                'tip1',
+                'tip2'
+            ],
+            'stats': {
+                'preparation_time': 0,
+                'cooking_time': 0,
+                'difficulty': 'easy',
+                'serving_size': 0
+            }
+        }
     }
 });
 
