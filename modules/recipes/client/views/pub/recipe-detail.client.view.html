@@ -27,48 +27,26 @@
                                 <!--two-third-->
                                 <article class="full-width">
                                     
-                                    <div class="intro"><p><strong>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas</strong></p> <p>Molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p><hr />
+                                    <div class="intro"><p><strong>{{data.recipeBean.details.description.short}}</strong></p> <p>{{data.recipeBean.details.description.long}}</p><hr />
                                     <div class="instructions"><ol>
-                                            <li>Heat oven to 160C/140C fan/gas 3 and line a 12-hole muffin tin with cases. Gently melt the butter, chocolate, sugar and 100ml hot water together in a large saucepan, stirring occasionally, then set aside to cool a little while you weigh the other ingredients.</li>
-                                            <li>Stir the eggs and vanilla into the chocolate mixture. Put the flour into a large mixing bowl, then stir in the chocolate mixture until smooth. Spoon into cases until just over three-quarters full (you may have a little mixture leftover), then set aside for 5 mins before putting on a low shelf in the oven and baking for 20-22 mins. Leave to cool.</li>
-                                            <li>For the icing, melt the chocolate in a heatproof bowl over a pan of barely simmering water. Once melted, turn off the heat, stir in the double cream and sift in the icing sugar. When spreadable, top each cake with some and decorate with your favourite sprinkles and sweets.</li>
+                                            <li ng-repeat="instructionStep in data.recipeBean.details.directions">{{instructionStep}}</li>
                                         </ol></div><hr />
                                         <div><article class="one-half">
                                     <dl class="basic">
-                                        <dt>Preparation time</dt>
-                                        <dd>15 mins</dd>
-                                        <dt>Cooking time</dt>
-                                        <dd>30 mins</dd>
-                                        <dt>Difficulty</dt>
-                                        <dd>easy</dd>
-                                        <dt>Serves</dt>
-                                        <dd>4 people</dd>
+                                        <dt ng-repeat-start="(stat, val) in data.recipeBean.details.stats">{{stat}}</dt>
+                                        <dd ng-repeat-end>{{val}}</dd>
                                     </dl>
                                     
                                     <dl class="user">
                                         <dt>Category</dt>
-                                        <dd>Deserts</dd>
+                                        <dd>{{data.recipeBean.category}}</dd>
                                         <dt>Posted by</dt>
-                                        <dd>Jennifer W.</dd>
+                                        <dd>{{data.recipeBean.monitor.author}}</dd>
                                     </dl></article>
                                     <article class="one-half">
                                     <dl class="ingredients">
-                                        <dt>300g</dt>
-                                        <dd>Self-raising flour</dd>
-                                        <dt>200g</dt>
-                                        <dd>Butter</dd>
-                                        <dt>200g</dt>
-                                        <dd>Plain chocolate</dd>
-                                        <dt>2</dt>
-                                        <dd>Eggs</dd>
-                                        <dt>1 tbsp</dt>
-                                        <dd>Vanilla extract</dd>
-                                        <dt>200 g</dt>
-                                        <dd>Brown sugar</dd>
-                                        <dt>100 ml</dt>
-                                        <dd>Double cream</dd>
-                                        <dt>handful</dt>
-                                        <dd>Sprinkles</dd>
+                                        <dt ng-repeat-start="(ing, val) in data.recipeBean.details.ingredients">{{ing}}</dt>
+                                        <dd ng-repeat-end>{{val}}</dd>
                                     </dl>
                                 </article></div>
                                     </div>
@@ -217,37 +195,9 @@
                     <div class="widget nutrition">
                         <h3>Nutrition facts <span>(per serving)</span></h3>
                         <table>
-                            <tr>
-                                <td>Calories </td>
-                                <td>505</td>
-                            </tr>
-                            <tr>
-                                <td>Protein</td>
-                                <td>59g</td>
-                            </tr>
-                            <tr>
-                                <td>Carbs</td>
-                                <td>59g</td>
-                            </tr>
-                            <tr>
-                                <td>Fat</td>
-                                <td>29g</td>
-                            </tr>
-                            <tr>
-                                <td>Saturates</td>
-                                <td>17g</td>
-                            </tr>
-                            <tr>
-                                <td>Fibre</td>
-                                <td>2g</td>
-                            </tr>
-                            <tr>
-                                <td>Sugar</td>
-                                <td>44g</td>
-                            </tr>
-                            <tr>
-                                <td>Salt</td>
-                                <td>0.51g</td>
+                            <tr ng-repeat="(nutr, val) in data.recipeBean.details.nutrition_value">
+                                <td>{{nutr}}</td>
+                                <td>{{val}}</td>
                             </tr>
                         </table>
                     </div>
