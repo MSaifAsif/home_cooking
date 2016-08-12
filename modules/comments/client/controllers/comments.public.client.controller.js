@@ -25,12 +25,13 @@
 
         $scope.addCommentForRecipe = function() {
             var newComment = new CommentsService();
+            console.log($scope.data.commentAuthorName);
             newComment.recipeId = $stateParams.recipeId;
             newComment.text = $scope.data.commentText;
-            if (!!$scope.data.commentAuthor || $scope.data.commentAuthor === '') {
+            if (!!$scope.data.commentAuthorName || $scope.data.commentAuthorName === '') {
                 newComment.author = 'anonymous';
             } else {
-                newComment.author = $scope.data.commentAuthor;
+                newComment.author = $scope.data.commentAuthorName;
             }
             newComment.stars = $scope.data.commentStars;
             newComment.isApproved = false;

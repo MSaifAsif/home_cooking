@@ -64,7 +64,7 @@
                         <!--//recipe-->
                             
                         <!--comments-->
-                        <div class="comments" id="comments">
+                        <div data-ng-controller="CommentsController" class="comments" id="comments">
                             <h2>5 comments </h2>
                             <ol class="comment-list">
                                 <!--comment-->
@@ -141,30 +141,30 @@
                         <!--//comments-->
                         
                         <!--respond-->
-                        <div class="comment-respond" id="respond">
+                        <div data-ng-controller="CommentsController" class="comment-respond" id="respond">
                             <h2>Leave a reply</h2>
                             <div class="container">
                                 <p><strong>Note:</strong> Comments on the web site reflect the views of their authors, and not necessarily the views of the I-BoostUp internet portal. Requested to refrain from insults, swearing and vulgar expression. We reserve the right to delete any comment without notice explanations.</p>
                                 <p>Your email address will not be published. Required fields are signed with <span class="req">*</span></p>
-                                <form>
+                                <form ng-submit="addCommentForRecipe()">
                                     <div class="f-row">
                                         <div class="third">
-                                            <input type="text" placeholder="Your name" />
+                                            <input type="text" placeholder="Your name" id="commentAuthorName" name="commentAuthorName" data-ng-model="data.commentAuthorName" />
                                             <span class="req">*</span>
                                         </div>
                                         
                                         <div class="third">
-                                            <input type="email" placeholder="Your email" />
+                                            <input type="email" placeholder="Your email" id="commentAuthorEmail" name="commentAuthorEmail" data-ng-model="data.commentAuthorEmail" />
                                             <span class="req">*</span>
                                         </div>
                                         
                                         <div class="third">
-                                            <input type="text" placeholder="Your website" />
+                                            <input type="text" placeholder="Your website" id="commentAuthor" name="commentAuthor" data-ng-model="data.commentAuthor" />
                                         </div>
                                     
                                     </div>
                                     <div class="f-row">
-                                        <textarea></textarea>
+                                        <textarea id="commentText" name="commentText" data-ng-model="data.commentText"></textarea>
                                     </div>
                                     
                                     <div class="f-row">
