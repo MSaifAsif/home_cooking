@@ -28,14 +28,15 @@
             console.log($scope.data.commentAuthorName);
             newComment.recipeId = $stateParams.recipeId;
             newComment.text = $scope.data.commentText;
-            if (!!$scope.data.commentAuthorName || $scope.data.commentAuthorName === '') {
-                newComment.author = 'anonymous';
-            } else {
-                newComment.author = $scope.data.commentAuthorName;
-            }
+            var authorObj = {
+                'name': $scope.data.commentAuthorName,
+                'email': $scope.data.commentAuthorEmail
+            };
+            newComment.author = authorObj;
             newComment.stars = $scope.data.commentStars;
             newComment.isApproved = false;
             newComment.$save(function(data){
+                console.log(data);
                 // reload the comments section
                 // TODO this is not working
                 $scope.createCommentForm.$setPristine();

@@ -19,8 +19,11 @@ var CommentsSchema = new Schema({
         default: ''
     },
     author: {
-        type: String,
-        default: 'anonymous'
+        type: Schema.Types.Mixed,
+        default: {
+            'name': 'no-name',
+            'email': 'no-name@anonymouse.com'
+        }
     },
     isApproved: {
         type: Boolean,
@@ -33,7 +36,7 @@ var CommentsSchema = new Schema({
     createdDate: {
         type: Date,
         default: Date.now()
-    },
+    }
 });
 
 mongoose.model('Comments', CommentsSchema);

@@ -64,11 +64,25 @@
                         <!--//recipe-->
                             
                         <!--comments-->
-                        <div data-ng-controller="CommentsController" class="comments" id="comments">
+                        <div data-ng-controller="CommentsController" ng-init="getCommentsForRecipe()" class="comments" id="comments">
                             <h2>5 comments </h2>
                             <ol class="comment-list">
                                 <!--comment-->
-                                <li class="comment depth-1">
+                                <li ng-repeat="cmnt in data.comments" class="comment depth-1">
+                                    <div class="avatar"><a href="my_profile.html"><img src="images/avatar1.jpg" alt="" /></a></div>
+                                    <div class="comment-box">
+                                        <div class="comment-author meta"> 
+                                            <strong>{{cmnt.author.name}}</strong> said 1 month ago <a href="#" class="comment-reply-link"> Reply</a>
+                                        </div>
+                                        <div class="comment-text">
+                                            <p>{{cmnt.text}}</p>
+                                        </div>
+                                    </div> 
+                                </li>
+                                <!--//comment-->
+                                
+                                <!--comment-->
+                                <!--li class="comment depth-2">
                                     <div class="avatar"><a href="my_profile.html"><img src="images/avatar1.jpg" alt="" /></a></div>
                                     <div class="comment-box">
                                         <div class="comment-author meta"> 
@@ -79,63 +93,7 @@
                                         </div>
                                     </div> 
                                 </li>
-                                <!--//comment-->
-                                
-                                <!--comment-->
-                                <li class="comment depth-1">
-                                    <div class="avatar"><a href="my_profile.html"><img src="images/avatar2.jpg" alt="" /></a></div>
-                                    <div class="comment-box">
-                                        <div class="comment-author meta"> 
-                                            <strong>Alex J.</strong> said 1 month ago <a href="#" class="comment-reply-link"> Reply</a>
-                                        </div>
-                                        <div class="comment-text">
-                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
-                                        </div>
-                                    </div> 
-                                </li>
-                                <!--//comment-->
-                                
-                                <!--comment-->
-                                <li class="comment depth-2">
-                                    <div class="avatar"><a href="my_profile.html"><img src="images/avatar1.jpg" alt="" /></a></div>
-                                    <div class="comment-box">
-                                        <div class="comment-author meta"> 
-                                            <strong>Kimberly C.</strong> said 1 month ago <a href="#" class="comment-reply-link"> Reply</a>
-                                        </div>
-                                        <div class="comment-text">
-                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
-                                        </div>
-                                    </div> 
-                                </li>
-                                <!--//comment-->
-                                
-                                <!--comment-->
-                                <li class="comment depth-3">
-                                    <div class="avatar"><a href="my_profile.html"><img src="images/avatar2.jpg" alt="" /></a></div>
-                                    <div class="comment-box">
-                                        <div class="comment-author meta"> 
-                                            <strong>Alex J.</strong> said 1 month ago <a href="#" class="comment-reply-link"> Reply</a>
-                                        </div>
-                                        <div class="comment-text">
-                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
-                                        </div>
-                                    </div> 
-                                </li>
-                                <!--//comment-->
-                                
-                                <!--comment-->
-                                <li class="comment depth-1">
-                                    <div class="avatar"><a href="my_profile.html"><img src="images/avatar3.jpg" alt="" /></a></div>
-                                    <div class="comment-box">
-                                        <div class="comment-author meta"> 
-                                            <strong>Denise M.</strong> said 1 month ago <a href="#" class="comment-reply-link"> Reply</a>
-                                        </div>
-                                        <div class="comment-text">
-                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
-                                        </div>
-                                    </div> 
-                                </li>
-                                <!--//comment-->
+                                <!--//comment-->                                
                             </ol>
                         </div>
                         <!--//comments-->
@@ -146,7 +104,7 @@
                             <div class="container">
                                 <p><strong>Note:</strong> Comments on the web site reflect the views of their authors, and not necessarily the views of the I-BoostUp internet portal. Requested to refrain from insults, swearing and vulgar expression. We reserve the right to delete any comment without notice explanations.</p>
                                 <p>Your email address will not be published. Required fields are signed with <span class="req">*</span></p>
-                                <form ng-submit="addCommentForRecipe()">
+                                <form ng-submit="addCommentForRecipe()" name="createCommentForm" id="createCommentForm">
                                     <div class="f-row">
                                         <div class="third">
                                             <input type="text" placeholder="Your name" id="commentAuthorName" name="commentAuthorName" data-ng-model="data.commentAuthorName" />

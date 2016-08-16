@@ -82,6 +82,7 @@
                     deferred.resolve('/dummy/path');
                 }
             }, function errorCallback(response) {
+                // this is not used right now
                 console.error(response.msg);
             });
             return deferred.promise;
